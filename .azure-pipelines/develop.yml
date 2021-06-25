@@ -15,6 +15,12 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: DownloadSecureFile@1
+  name: 'apiTest'
+  displayName: 'Download api-test.json'
+  inputs:
+    secureFile: 'api-test.json'
+
 - task: NuGetToolInstaller@1
   displayName: 'NuGet tool installer'
 
@@ -35,11 +41,6 @@ steps:
     command: 'build'
     projects: 'src/**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
-
-- task: DownloadSecureFile@1
-  name: 'apiTest'
-  inputs:
-    secureFile: 'api-test.json'
 
 - task: CopyFiles@2
   displayName: 'Copy api-test.json to test directory.'
