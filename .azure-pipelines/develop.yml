@@ -45,7 +45,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy api-test.json to test directory.'
   inputs:
-    Contents: '**/$(apiTest.secureFilePath)'
+    Contents: '$(apiTest.secureFilePath)'
     TargetFolder: 'Test/Nulab.Backlog.Api.Tests/bin/Debug/netcoreapp3.1'
     OverWrite: true
 
