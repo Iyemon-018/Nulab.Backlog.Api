@@ -42,12 +42,10 @@ steps:
     projects: 'src/**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
-- task: CopyFiles@2
-  displayName: 'Copy api-test.json to test directory.'
+- task: PowerShell@2
   inputs:
-    Contents: '$(apiTest.secureFilePath)'
-    TargetFolder: 'Test/Nulab.Backlog.Api.Tests/bin/Debug/netcoreapp3.1'
-    OverWrite: true
+    targetType: 'inline'
+    script: 'Copy-Item -Path $(apiTest.secureFilePath) -Destination ''$(Build.SourcesDirectory)/Test/Nulab.Backlog.Api.Tests/bin/Debug/netcoreapp3.1/api-test.json'' -Force'
 
 - task: DotNetCoreCLI@2
   displayName: '.NET test'
