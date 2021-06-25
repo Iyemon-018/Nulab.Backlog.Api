@@ -16,7 +16,7 @@ variables:
 
 steps:
 - task: DownloadSecureFile@1
-  name: 'apiTest'
+  name: apiTest
   displayName: 'Download api-test.json'
   inputs:
     secureFile: 'api-test.json'
