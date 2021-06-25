@@ -37,11 +37,9 @@ steps:
     arguments: '--configuration $(buildConfiguration)'
 
 - task: DownloadSecureFile@1
-  displayName: 'Download api-test.json'
   name: 'apiTest'
   inputs:
     secureFile: 'api-test.json'
-    retryCount: '3'
 
 - task: CopyFiles@2
   displayName: 'Copy api-test.json to test directory.'
