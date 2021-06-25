@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D481AFC9-5137-4479-A2C2-2AF435294ADE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{65E91C39-1035-47FE-9BEC-0DB1F1CE762D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Debug", "Debug", "{6AFBFFF1-D64B-423C-BE2A-FBFA6D247C50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nulab.Backlog.Api", "src\Nulab.Backlog.Api\Nulab.Backlog.Api.csproj", "{809D34BD-231E-4C58-AAC3-C13509C5241E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nulab.Backlog.Api.Tests", "Test\Nulab.Backlog.Api.Tests\Nulab.Backlog.Api.Tests.csproj", "{40F8BF8F-192C-40D7-A91E-68BB420D9BDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{809D34BD-231E-4C58-AAC3-C13509C5241E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{809D34BD-231E-4C58-AAC3-C13509C5241E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{809D34BD-231E-4C58-AAC3-C13509C5241E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{809D34BD-231E-4C58-AAC3-C13509C5241E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40F8BF8F-192C-40D7-A91E-68BB420D9BDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40F8BF8F-192C-40D7-A91E-68BB420D9BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40F8BF8F-192C-40D7-A91E-68BB420D9BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40F8BF8F-192C-40D7-A91E-68BB420D9BDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{809D34BD-231E-4C58-AAC3-C13509C5241E} = {D481AFC9-5137-4479-A2C2-2AF435294ADE}
+		{40F8BF8F-192C-40D7-A91E-68BB420D9BDD} = {65E91C39-1035-47FE-9BEC-0DB1F1CE762D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E55F27C2-F6F7-4B06-9311-CA17C632981E}
+	EndGlobalSection
+EndGlobal
