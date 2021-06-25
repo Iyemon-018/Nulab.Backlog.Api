@@ -54,5 +54,5 @@ steps:
   displayName: '.NET test'
   inputs:
     command: 'test'
-    projects: 'Tests/**/*.csproj'
+    projects: 'Test/**/*.csproj'
     arguments: '--configuration Debug --collect "Code coverage"'
