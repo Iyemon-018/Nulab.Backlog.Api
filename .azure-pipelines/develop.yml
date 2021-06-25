@@ -15,6 +15,18 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      $TargetDirectory = '$(Build.SourcesDirectory)/Test/Nulab.Backlog.Api.Tests/bin/Debug/netcoreapp3.1'
+      
+      if (-Not (Test-Path $TargetDirectory)) {
+        New-Item $TargetDirectory -ItemType Directory
+      }
+      
+      Copy-Item -Path $(apiTest.secureFilePath) -Destination (Join-Path $TargetDirectory 'api-test.json') -Force
+
 - task: DownloadSecureFile@1
   name: apiTest
   displayName: 'Download api-test.json'
@@ -41,18 +53,6 @@ steps:
     command: 'build'
     projects: 'src/**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
-
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      $TargetDirectory = '$(Build.SourcesDirectory)/Test/Nulab.Backlog.Api.Tests/bin/Debug/netcoreapp3.1'
-      
-      if (-Not Test-Path $TargetDirectory) {
-        New-Item $TargetDirectory -ItemType Directory
-      }
-      
-      Copy-Item -Path $(apiTest.secureFilePath) -Destination (Join-Path $TargetDirectory 'api-test.json') -Force
 
 - task: DotNetCoreCLI@2
   displayName: '.NET test'
