@@ -1,17 +1,14 @@
-using System;
-using Xunit;
-
 namespace Nulab.Backlog.Api.Tests
 {
     using System.Threading.Tasks;
+    using Xunit;
 
     public class UnitTest1
     {
         [Fact]
         public async Task Test_ƒVƒiƒŠƒI()
         {
-            var client = new Client("https://motex-mark.backlog.com");
-            client.AddCredentials(new ApiTokenCredentials(""));
+            var client = TestFactory.CreateClient();
             var response = await client.Projects.GetUsersAsync("DEVELOP_ONE").ConfigureAwait(false);
             response.IsSuccess.IsTrue();
         }

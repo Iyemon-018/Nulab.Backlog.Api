@@ -17,6 +17,6 @@
 
         }
 
-        public bool HasError => errors.Any();
+        public bool HasError => errors == null || errors.Any();
     }
 }
