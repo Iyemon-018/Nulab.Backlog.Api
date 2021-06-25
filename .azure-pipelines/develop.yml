@@ -45,7 +45,14 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'Copy-Item -Path $(apiTest.secureFilePath) -Destination ''$(Build.SourcesDirectory)/Test/Nulab.Backlog.Api.Tests/bin/Debug/netcoreapp3.1/api-test.json'' -Force'
+    script: |
+      $TargetDirectory = '$(Build.SourcesDirectory)/Test/Nulab.Backlog.Api.Tests/bin/Debug/netcoreapp3.1'
+      
+      if (-Not Test-Path $TargetDirectory) {
+        New-Item $TargetDirectory -ItemType Directory
+      }
+      
+      Copy-Item -Path $(apiTest.secureFilePath) -Destination (Join-Path $TargetDirectory 'api-test.json') -Force
 
 - task: DotNetCoreCLI@2
   displayName: '.NET test'
