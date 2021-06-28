@@ -8,21 +8,24 @@
 
         private readonly HttpMethod _httpMethod;
 
-        private readonly object _parameter;
+        private readonly QueryParameters _parameter;
 
         public RestApiRequest(string url
                             , HttpMethod httpMethod
-                            , object parameter)
+                            , QueryParameters parameter)
         {
             _url        = url;
             _httpMethod = httpMethod;
-            _parameter  = parameter;
+            _parameter  = parameter ?? new QueryParameters();
         }
 
         public HttpRequestMessage Build(string baseUri
                                       , ApiTokenCredentials apiTokenCredentials)
         {
-            return new HttpRequestMessage(_httpMethod, $"{baseUri}{_url}?{apiTokenCredentials.AsParameter()}");
+            _parameter.Add(apiTokenCredentials.AsParameter());
+            var requestUri = $"{baseUri}{_url}{_parameter}";
+
+            return new HttpRequestMessage(_httpMethod, requestUri);
         }
     }
 }

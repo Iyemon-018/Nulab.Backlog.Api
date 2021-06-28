@@ -34,7 +34,7 @@
         }
 
         private async Task<RestApiResponse> GetAsync(string url
-                                                   , object parameter = null)
+                                                   , QueryParameters parameter = null)
         {
             var request = new RestApiRequest(url, HttpMethod.Get, parameter);
             return await _client.SendAsync(request).ConfigureAwait(false);

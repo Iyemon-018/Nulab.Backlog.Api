@@ -9,6 +9,6 @@
             _apiKey = apiKey;
         }
 
-        public string AsParameter() => $"apiKey={_apiKey}";
+        public (string key, object value) AsParameter() => ($"apiKey", _apiKey);
     }
 }

@@ -40,7 +40,11 @@
                                                                                                  , int offset = 0
                                                                                                  , int count = 20)
         {
-            var response = await GetAsync($"/api/v2/users/myself/recentlyViewedIssues");
+            var parameters = QueryParameters.Build(nameof(order), order)
+                                            .Add(nameof(offset), offset)
+                                            .Add(nameof(count), count);
+            var response = await GetAsync($"/api/v2/users/myself/recentlyViewedIssues", parameters);
+
             return await CreateResponseAsync<List<RecentlyViewedIssue>>(response, HttpStatusCode.OK);
         }
     }
