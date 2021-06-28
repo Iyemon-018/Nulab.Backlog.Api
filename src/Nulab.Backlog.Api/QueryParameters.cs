@@ -30,6 +30,8 @@
         private string ToValue(object value)
         {
             var type = value.GetType();
+
+            if (value is bool) return $"{value.ToString().ToLower()}";
             if (value is DateTime) return $"{value:yyyy/MM/dd}";
             if (type.IsArray && type.GetElementType() == typeof(int)) return $"[{string.Join(",", (int[])value)}]";
             return value.ToString();

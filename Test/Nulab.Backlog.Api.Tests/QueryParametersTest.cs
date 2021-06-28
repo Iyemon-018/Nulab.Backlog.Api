@@ -34,12 +34,13 @@
             // act
             var actual = queryParameters.Add("key", 123)
                                         .Add("order", "desc")
+                                        .Add("boolean", true)
                                         .Add("date", new DateTime(2021, 6, 28))
                                         .Add("array", new[] {1, 2, 3})
                                         .ToString();
 
             // assert
-            actual.Is("?key=123&order=desc&date=2021/06/28&array=[1,2,3]");
+            actual.Is("?key=123&order=desc&boolean=true&date=2021/06/28&array=[1,2,3]");
         }
 
         [Fact]

@@ -1,7 +1,5 @@
 ﻿namespace Nulab.Backlog.Api.Tests
 {
-    using System;
-    using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using Xunit;
@@ -20,11 +18,67 @@
         public async Task Test_シナリオ_Projects_GetUsersAsync()
         {
             // arrange
-            var client   = TestFactory.CreateClient();
-            var data     = TestFactory.Load();
+            var client = TestFactory.CreateClient();
+            var data   = TestFactory.Load();
 
             // act
             var response = await client.Projects.GetUsersAsync(data.projectKey).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response.Content.ToJson());
+        }
+
+        [Fact]
+        public async Task Test_シナリオ_Projects_GetAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // act 
+            var response = await client.Projects.GetAsync().ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response.Content.ToJson());
+        }
+
+        [Fact]
+        public async Task Test_シナリオ_Projects_GetAsync_アーカイブされたプロジェクト()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // act 
+            var response = await client.Projects.GetAsync(archived: true).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response.Content.ToJson());
+        }
+
+        [Fact]
+        public async Task Test_シナリオ_Projects_GetAsync_アーカイブされていないプロジェクト()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // act 
+            var response = await client.Projects.GetAsync(archived: false).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response.Content.ToJson());
+        }
+
+        [Fact]
+        public async Task Test_シナリオ_Projects_GetAsync_管理者権限が有効なすべてのプロジェクト()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // act 
+            var response = await client.Projects.GetAsync(all: true).ConfigureAwait(false);
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
