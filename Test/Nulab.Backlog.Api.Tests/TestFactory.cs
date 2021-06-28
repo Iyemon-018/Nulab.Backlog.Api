@@ -13,17 +13,31 @@ namespace Nulab.Backlog.Api.Tests
                                                                      , DefaultValueHandling  = DefaultValueHandling.Include
                                                                    };
 
-        public static Client CreateClient()
+        private static Api.Client _client = null;
+
+        private static ApiTestData _apiTestData = null;
+
+        public static ApiTestData Load()
         {
+            if (_apiTestData != null) return _apiTestData;
+
             using var textReader = File.OpenText(Path.Combine(Environment.CurrentDirectory, "api-test.json"));
             using var jsonReader = new JsonTextReader(textReader);
 
-            var data   = DefaultSerializer.Deserialize<ApiTestData>(jsonReader);
-            var client = new Client(data.baseUri);
+            _apiTestData = DefaultSerializer.Deserialize<ApiTestData>(jsonReader);
+            return _apiTestData;
+        }
 
-            client.AddCredentials(new ApiTokenCredentials(data.apiKey));
+        public static Api.Client CreateClient()
+        {
+            if (_client != null) return _client;
 
-            return client;
+            var data   = Load();
+            _client = new Api.Client(data.baseUri);
+
+            _client.AddCredentials(new ApiTokenCredentials(data.apiKey));
+
+            return _client;
         }
     }
 }

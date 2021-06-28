@@ -5,5 +5,7 @@ namespace Nulab.Backlog.Api.Tests
         public string baseUri { get; set; }
 
         public string apiKey { get; set; }
+
+        public string projectKey { get; set; }
     }
 }
