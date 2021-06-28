@@ -14,6 +14,6 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-project-user-list/#
         /// </remarks>
-        Task<BacklogResponse<List<ProjectUser>>> GetUsersAsync(string projectIdOrKey, bool excludeGroupMembers = false);
+        Task<BacklogResponse<List<ProjectUser>>> GetUsersAsync(string projectIdOrKey, bool? excludeGroupMembers = null);
     }
 }

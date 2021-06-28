@@ -8,7 +8,7 @@
     public partial class Client : IProjects
     {
         async Task<BacklogResponse<List<ProjectUser>>> IProjects.GetUsersAsync(string projectIdOrKey
-                                                                             , bool excludeGroupMembers = false)
+                                                                             , bool? excludeGroupMembers = null)
         {
             var parameter = new QueryParameters().Add(nameof(excludeGroupMembers), excludeGroupMembers);
             var response  = await GetAsync($"/api/v2/projects/{projectIdOrKey}/users", parameter);
