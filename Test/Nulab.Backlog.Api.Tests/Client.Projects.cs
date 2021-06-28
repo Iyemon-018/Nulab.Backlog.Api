@@ -7,11 +7,11 @@
     using Xunit;
     using Xunit.Abstractions;
 
-    public partial class Client
+    public partial class ClientTest
     {
         private readonly ITestOutputHelper _outputHelper;
 
-        public Client(ITestOutputHelper outputHelper)
+        public ClientTest(ITestOutputHelper outputHelper)
         {
             _outputHelper = outputHelper;
         }

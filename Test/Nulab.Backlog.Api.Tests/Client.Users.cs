@@ -8,7 +8,7 @@ namespace Nulab.Backlog.Api.Tests
     using System.Threading.Tasks;
     using Xunit;
 
-    public partial class Client
+    public partial class ClientTest
     {
         [Fact]
         public async Task Test_シナリオ_Users_GetAsync()

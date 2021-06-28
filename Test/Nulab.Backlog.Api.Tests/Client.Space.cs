@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using Xunit;
 
-    public partial class Client
+    public partial class ClientTest
     {
         [Fact]
         public async Task Test_シナリオ_Space_GetAsync()
