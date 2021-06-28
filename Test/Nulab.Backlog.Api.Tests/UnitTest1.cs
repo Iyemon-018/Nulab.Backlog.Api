@@ -1,4 +1,4 @@
-namespace Nulab.Backlog.Api.Tests
+ï»¿namespace Nulab.Backlog.Api.Tests
 {
     using System.Threading.Tasks;
     using Xunit;
@@ -6,9 +6,9 @@ namespace Nulab.Backlog.Api.Tests
     public class UnitTest1
     {
         [Fact]
-        public async Task Test_ƒVƒiƒŠƒI()
+        public async Task Test_ã‚·ãƒŠãƒªã‚ª()
         {
-            var client = TestFactory.CreateClient();
+            var client   = TestFactory.CreateClient();
             var response = await client.Projects.GetUsersAsync("DEVELOP_ONE").ConfigureAwait(false);
             response.IsSuccess.IsTrue();
         }

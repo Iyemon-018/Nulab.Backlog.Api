@@ -8,9 +8,9 @@ namespace Nulab.Backlog.Api.Tests
     {
         private static readonly JsonSerializer DefaultSerializer = new JsonSerializer
                                                                    {
-                                                                       MissingMemberHandling = MissingMemberHandling.Ignore,
-                                                                       NullValueHandling     = NullValueHandling.Include,
-                                                                       DefaultValueHandling  = DefaultValueHandling.Include
+                                                                       MissingMemberHandling = MissingMemberHandling.Ignore
+                                                                     , NullValueHandling     = NullValueHandling.Include
+                                                                     , DefaultValueHandling  = DefaultValueHandling.Include
                                                                    };
 
         public static Client CreateClient()
