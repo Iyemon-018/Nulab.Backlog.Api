@@ -28,9 +28,7 @@
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
-
-            var projectUsers = response.Content;
-            _outputHelper.WriteLine(string.Join(Environment.NewLine, projectUsers.Select(x => x.ToString()).ToArray()));
+            _outputHelper.WriteLine(response.Content.ToJson());
         }
     }
 }

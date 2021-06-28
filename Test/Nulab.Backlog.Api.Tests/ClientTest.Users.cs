@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Nulab.Backlog.Api.Tests
+﻿namespace Nulab.Backlog.Api.Tests
 {
     using System.Net;
     using System.Threading.Tasks;
@@ -22,9 +18,7 @@ namespace Nulab.Backlog.Api.Tests
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
-
-            var user = response.Content;
-            _outputHelper.WriteLine(user.ToString());
+            _outputHelper.WriteLine(response.Content.ToJson());
         }
 
         [Fact]
@@ -34,13 +28,25 @@ namespace Nulab.Backlog.Api.Tests
             var client = TestFactory.CreateClient();
 
             // act
-            var response = await client.Users.GetMySelfAsync();
+            var response = await client.Users.GetMySelfAsync().ConfigureAwait(false);
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response.Content.ToJson());
+        }
 
-            var loginUser = response.Content;
-            _outputHelper.WriteLine(loginUser.ToString());
+        [Fact]
+        public async Task Test_シナリオ_Users_GetRecentlyViewedIssuesAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // act
+            var response = await client.Users.GetRecentlyViewedIssuesAsync().ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response.Content.ToJson());
         }
     }
 }

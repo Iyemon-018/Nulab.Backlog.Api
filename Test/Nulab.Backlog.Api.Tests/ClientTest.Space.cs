@@ -17,9 +17,7 @@
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
-
-            var space = response.Content;
-            _outputHelper.WriteLine(space.ToString());
+            _outputHelper.WriteLine(response.Content.ToJson());
         }
     }
 }
