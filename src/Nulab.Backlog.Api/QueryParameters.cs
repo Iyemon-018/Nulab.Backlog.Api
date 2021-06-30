@@ -6,17 +6,19 @@
 
     internal class QueryParameters
     {
+        private static readonly string Separator = "&";
+
         private readonly List<(string key, object value)> _parameters = new List<(string key, object value)>();
 
         public override string ToString()
         {
             if (_parameters.All(x=> x.value == null)) return string.Empty;
 
-            var parameter = _parameters.Where(Valid).Select(x => $"{x.key}={ToValue(x.value)}").ToArray();
+            var parameter = _parameters.Where(Valid).Select(ToValue).ToArray();
 
             if (!parameter.Any()) return string.Empty;
 
-            return $"?{string.Join("&", parameter)}";
+            return $"?{string.Join(Separator, parameter)}";
         }
 
         private bool Valid((string key, object value) parameter)
@@ -27,14 +29,19 @@
             return true;
         }
 
-        private string ToValue(object value)
+        private string ToValue((string key, object value) parameter)
         {
-            var type = value.GetType();
+            var type = parameter.value.GetType();
 
-            if (value is bool) return $"{value.ToString().ToLower()}";
-            if (value is DateTime) return $"{value:yyyy/MM/dd}";
-            if (type.IsArray && type.GetElementType() == typeof(int)) return $"[{string.Join(",", (int[])value)}]";
-            return value.ToString();
+            if (parameter.value is bool) return $"{parameter.key}={parameter.value.ToString().ToLower()}";
+
+            if (parameter.value is DateTime) return $"{parameter.key}={parameter.value:yyyy/MM/dd}";
+
+            // 配列の場合は array[0]=1&array[1]=2&array[3]=9 のようにクエリパラメータを指定しなければならない。
+            if (type.IsArray && type.GetElementType() == typeof(int))
+                return string.Join(Separator, ((int[]) parameter.value).Select((x, i) => ToValue(($"{parameter.key}[{i}]", x))));
+
+            return $"{parameter.key}={parameter.value}";
         }
 
         public static QueryParameters Build(string name, object value)

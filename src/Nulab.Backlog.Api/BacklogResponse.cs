@@ -1,5 +1,7 @@
 ﻿namespace Nulab.Backlog.Api
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using Data.Responses;
 
@@ -26,5 +28,7 @@
         public T Content { get; }
 
         public Errors Errors { get; }
+
+        public IEnumerable<string> AsErrorMessages() => IsSuccess ? Enumerable.Empty<string>() : Errors.AsMessages();
     }
 }
