@@ -14,7 +14,7 @@
         
         public object[] notifications { get; set; }
         
-        public Createduser createdUser { get; set; }
+        public User createdUser { get; set; }
         
         public DateTime created { get; set; }
     }
