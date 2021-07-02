@@ -36,5 +36,19 @@
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
+
+        [Fact]
+        public async Task Test_シナリオ_Space_GetNotificationAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // act
+            var response = await client.Space.GetNotificationAsync().ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
     }
 }

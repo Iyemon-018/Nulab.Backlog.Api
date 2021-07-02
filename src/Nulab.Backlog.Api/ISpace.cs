@@ -33,5 +33,14 @@
                                                                     , int? maxId = null
                                                                     , int? count = null
                                                                     , string order = null);
+
+        /// <summary>
+        /// スペースのお知らせを取得します。
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-space-notification/#
+        /// </remarks>
+        Task<BacklogResponse<SpaceNotification>> GetNotificationAsync();
     }
 }
