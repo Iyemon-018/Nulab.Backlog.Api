@@ -71,5 +71,19 @@
 
             return await CreateResponseAsync<SpaceNotification>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// スペースの容量使用状況を取得します。
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-space-disk-usage/#
+        /// </remarks>
+        async Task<BacklogResponse<DiskUsage>> ISpace.GetDiskUsageAsync()
+        {
+            var response = await GetAsync($"/api/v2/space/diskUsage").ConfigureAwait(false);
+
+            return await CreateResponseAsync<DiskUsage>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }
