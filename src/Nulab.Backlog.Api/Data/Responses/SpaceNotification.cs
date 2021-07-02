@@ -1,4 +1,4 @@
-﻿namespace Nulab.Backlog.Api
+﻿namespace Nulab.Backlog.Api.Data.Responses
 {
     using System;
 
