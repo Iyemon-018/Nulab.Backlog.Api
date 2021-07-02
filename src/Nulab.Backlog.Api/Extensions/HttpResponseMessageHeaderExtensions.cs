@@ -14,10 +14,9 @@
         public static DateTime TryGetDateTimeValue(this HttpResponseMessage self
                                                  , string name)
         {
-            // ヘッダー情報がないケースは、API 仕様が変わったことを意味するため、例外が発生することを想定していない。
-            var values = self.Headers.GetValues(name);
-
-            return long.Parse(values.FirstOrDefault()).FromUnixTime();
+            // レスポンスが 4XX や 5XX の場合、ヘッダーにデータがない場合がある。
+            // とりあえず異常と判断できるように .MinValue を返すものとしている。
+            return self.Headers.TryGetValues(name, out var values) ? long.Parse(values.FirstOrDefault()).FromUnixTime() : DateTime.MinValue;
         }
     }
 }
