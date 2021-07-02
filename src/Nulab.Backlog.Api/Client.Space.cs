@@ -56,5 +56,20 @@
 
             return await CreateResponseAsync<SpaceNotification>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// スペースのお知らせを更新します。
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/update-space-notification/#
+        /// </remarks>
+        async Task<BacklogResponse<SpaceNotification>> ISpace.PutNotificationAsync(string content)
+        {
+            var parameter = new QueryParameters().Add(nameof(content), content);
+            var response  = await PutAsync($"/api/v2/space/notification", parameter).ConfigureAwait(false);
+
+            return await CreateResponseAsync<SpaceNotification>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }

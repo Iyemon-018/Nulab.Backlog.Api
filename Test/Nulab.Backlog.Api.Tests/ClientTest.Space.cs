@@ -50,5 +50,20 @@
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
+
+        [Fact]
+        public async Task Test_シナリオ_Space_PutNotificationAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // act
+            var response = await client.Space.PutNotificationAsync($"test from <{nameof(Test_シナリオ_Space_PutNotificationAsync)}>.").ConfigureAwait(false);
+
+            // assert
+            response.AsErrorMessages().ToArray().IsNullOrEmpty();
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
     }
 }

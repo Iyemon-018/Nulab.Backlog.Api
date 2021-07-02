@@ -41,6 +41,12 @@
             return await _client.SendAsync(request).ConfigureAwait(false);
         }
 
+        private async Task<RestApiResponse> PutAsync(string url, QueryParameters parameter = null)
+        {
+            var request = new RestApiRequest(url, HttpMethod.Put, parameter);
+            return await _client.SendAsync(request).ConfigureAwait(false);
+        }
+
         public IUsers Users => this;
 
         public ISpace Space => this;

@@ -42,5 +42,14 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-space-notification/#
         /// </remarks>
         Task<BacklogResponse<SpaceNotification>> GetNotificationAsync();
+
+        /// <summary>
+        /// スペースのお知らせを更新します。
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/update-space-notification/#
+        /// </remarks>
+        Task<BacklogResponse<SpaceNotification>> PutNotificationAsync(string content);
     }
 }
