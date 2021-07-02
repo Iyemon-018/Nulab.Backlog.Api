@@ -8,10 +8,12 @@
     public sealed class BacklogResponse<T>
     {
         public BacklogResponse(HttpStatusCode statusCode
-                             , T content)
+                             , T content
+                             , RateLimiting rateLimiting)
         {
-            StatusCode = statusCode;
-            Content    = content;
+            StatusCode   = statusCode;
+            Content      = content;
+            RateLimiting = rateLimiting;
         }
 
         public BacklogResponse(HttpStatusCode statusCode
@@ -26,6 +28,8 @@
         public HttpStatusCode StatusCode { get; }
 
         public T Content { get; }
+
+        public RateLimiting RateLimiting { get; }
 
         public Errors Errors { get; }
 

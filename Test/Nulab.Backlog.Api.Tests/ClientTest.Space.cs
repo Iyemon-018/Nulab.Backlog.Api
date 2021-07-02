@@ -19,7 +19,7 @@
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
-            _outputHelper.WriteLine(response.Content.ToJson());
+            _outputHelper.WriteLine(response);
         }
 
         [Fact]
@@ -34,7 +34,7 @@
             // assert
             response.AsErrorMessages().ToArray().IsNullOrEmpty();
             response.StatusCode.Is(HttpStatusCode.OK);
-            _outputHelper.WriteLine(response.Content.ToJson());
+            _outputHelper.WriteLine(response);
         }
     }
 }

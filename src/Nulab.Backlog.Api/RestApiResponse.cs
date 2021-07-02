@@ -1,9 +1,11 @@
 ﻿namespace Nulab.Backlog.Api
 {
+    using System;
     using System.IO;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using Extensions;
     using Newtonsoft.Json;
 
     internal sealed class RestApiResponse
@@ -18,9 +20,19 @@
             _response   = response;
             _serializer = serializer;
             StatusCode  = _response.StatusCode;
+
+            Limit     = response.TryGetValue("X-RateLimit-Limit");
+            Remaining = response.TryGetValue("X-RateLimit-Remaining");
+            Reset     = response.TryGetDateTimeValue("X-RateLimit-Reset");
         }
 
         public HttpStatusCode StatusCode { get; }
+        
+        public int Limit { get; }
+
+        public int Remaining { get; }
+
+        public DateTime Reset { get; }
 
         public async Task<T> DeserializeContentAsync<T>()
         {

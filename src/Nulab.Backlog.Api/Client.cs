@@ -23,8 +23,9 @@
         {
             if (response.StatusCode == successStatusCode)
             {
-                var content = await response.DeserializeContentAsync<T>();
-                return new BacklogResponse<T>(response.StatusCode, content);
+                var content      = await response.DeserializeContentAsync<T>();
+                var rateLimiting = new RateLimiting(response.Limit, response.Remaining, response.Reset);
+                return new BacklogResponse<T>(response.StatusCode, content, rateLimiting);
             }
             else
             {
