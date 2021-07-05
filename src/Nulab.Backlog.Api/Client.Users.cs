@@ -7,10 +7,23 @@
 
     public partial class Client : IUsers
     {
+        /// <summary>
+        /// ユーザー一覧を取得します。
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-user-list/#
+        /// </remarks>
+        async Task<BacklogResponse<List<User>>> IUsers.GetListAsync()
+        {
+            var response = await GetAsync($"/api/v2/users").ConfigureAwait(false);
+            return await CreateResponseAsync<List<User>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
+
         async Task<BacklogResponse<User>> IUsers.GetAsync(int id)
         {
-            var response = await GetAsync($"/api/v2/users/{id}");
-            return await CreateResponseAsync<User>(response, HttpStatusCode.OK);
+            var response = await GetAsync($"/api/v2/users/{id}").ConfigureAwait(false);
+            return await CreateResponseAsync<User>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -22,8 +35,8 @@
         /// </remarks>
         async Task<BacklogResponse<LoginUser>> IUsers.GetMySelfAsync()
         {
-            var response = await GetAsync($"/api/v2/users/myself");
-            return await CreateResponseAsync<LoginUser>(response, HttpStatusCode.OK);
+            var response = await GetAsync($"/api/v2/users/myself").ConfigureAwait(false);
+            return await CreateResponseAsync<LoginUser>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -43,9 +56,9 @@
             var parameters = QueryParameters.Build(nameof(order), order)
                                             .Add(nameof(offset), offset)
                                             .Add(nameof(count), count);
-            var response = await GetAsync($"/api/v2/users/myself/recentlyViewedIssues", parameters);
+            var response = await GetAsync($"/api/v2/users/myself/recentlyViewedIssues", parameters).ConfigureAwait(false);
 
-            return await CreateResponseAsync<List<RecentlyViewedIssue>>(response, HttpStatusCode.OK);
+            return await CreateResponseAsync<List<RecentlyViewedIssue>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
     }
 }

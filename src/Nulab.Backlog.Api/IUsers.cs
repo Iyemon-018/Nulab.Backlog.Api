@@ -7,6 +7,15 @@
     public interface IUsers
     {
         /// <summary>
+        /// ユーザー一覧を取得します。
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-user-list/#
+        /// </remarks>
+        Task<BacklogResponse<List<User>>> GetListAsync();
+
+        /// <summary>
         /// ユーザー情報を取得します。
         /// </summary>
         /// <param name="id">ユーザーのID</param>
