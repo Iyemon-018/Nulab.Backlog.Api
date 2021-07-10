@@ -60,5 +60,17 @@
 
             return await CreateResponseAsync<List<RecentlyViewedIssue>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        async Task<BacklogResponse<List<UserActivity>>> IUsers.GetActivitiesAsync(int userId, int[] activityTypeId, int? minId, int? maxId, int? count, string order)
+        {
+            var parameters = QueryParameters.Build(nameof(activityTypeId), activityTypeId)
+                                            .Add(nameof(minId), minId)
+                                            .Add(nameof(maxId), maxId)
+                                            .Add(nameof(count), count)
+                                            .Add(nameof(order), order);
+            var response = await GetAsync($"/api/v2/users/{userId}/activities", parameters).ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<UserActivity>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }
