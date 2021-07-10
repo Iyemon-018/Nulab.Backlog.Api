@@ -51,9 +51,9 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-issues/#
         /// </remarks>
-        async Task<BacklogResponse<List<RecentlyViewedIssue>>> IUsers.GetRecentlyViewedIssuesAsync(string order = ""
-                                                                                                 , int offset = 0
-                                                                                                 , int count = 20)
+        async Task<BacklogResponse<List<RecentlyViewedIssue>>> IUsers.GetRecentlyViewedIssuesAsync(string order
+                                                                                                 , int? offset
+                                                                                                 , int? count)
         {
             var parameters = QueryParameters.Build(nameof(order), order)
                                             .Add(nameof(offset), offset)

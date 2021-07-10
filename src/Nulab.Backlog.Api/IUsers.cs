@@ -92,7 +92,7 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-issues/#
         /// </remarks>
-        Task<BacklogResponse<List<RecentlyViewedIssue>>> GetRecentlyViewedIssuesAsync(string order = "", int offset = 0, int count = 20);
+        Task<BacklogResponse<List<RecentlyViewedIssue>>> GetRecentlyViewedIssuesAsync(string order = null, int? offset = null, int? count = null);
 
         /// <summary>
         /// 自分が最近見たプロジェクト一覧を取得します。
@@ -104,7 +104,7 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-projects/#
         /// </remarks>
-        Task<BacklogResponse<List<RecentlyViewedProject>>> GetRecentlyViewedProjectsAsync(string order = "", int? offset = null, int? count = null);
+        Task<BacklogResponse<List<RecentlyViewedProject>>> GetRecentlyViewedProjectsAsync(string order = null, int? offset = null, int? count = null);
 
         /// <summary>
         /// 自分が最近見たWiki一覧を取得します。
