@@ -28,7 +28,7 @@ namespace Nulab.Backlog.Api.Tests
             return _apiTestData;
         }
 
-        public static Api.Client CreateClient()
+        public static IBacklogClient CreateClient()
         {
             if (_client != null) return _client;
 

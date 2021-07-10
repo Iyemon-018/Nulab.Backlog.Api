@@ -1,5 +1,6 @@
 ﻿namespace Nulab.Backlog.Api
 {
+    using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
@@ -45,6 +46,13 @@
         {
             var request = new RestApiRequest(url, HttpMethod.Put, parameter);
             return await _client.SendAsync(request).ConfigureAwait(false);
+        }
+
+        async Task<BacklogResponse<List<Priority>>> IBacklogClient.GetPrioritiesAsync()
+        {
+            var response = await GetAsync($"/api/v2/priorities").ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<Priority>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
 
         public IUsers Users => this;
