@@ -12,6 +12,13 @@
 
         IProjects Projects { get; }
 
+        /// <summary>
+        /// 優先度一覧を取得します。
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-priority-list/#
+        /// </remarks>
         Task<BacklogResponse<List<Priority>>> GetPrioritiesAsync();
     }
 }
