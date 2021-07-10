@@ -1,9 +1,11 @@
 ﻿namespace Nulab.Backlog.Api
 {
+    using System;
     using System.Collections.Generic;
     using System.Net;
     using System.Threading.Tasks;
     using Data.Responses;
+    using Extensions;
 
     public partial class Client : IUsers
     {
@@ -82,6 +84,15 @@
             var response = await GetAsync($"/api/v2/users/{userId}/stars", parameters).ConfigureAwait(false);
 
             return await CreateResponseAsync<List<Star>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
+
+        async Task<BacklogResponse<StarsCount>> IUsers.GetStarsCountAsync(int userId, DateTime? since, DateTime? until)
+        {
+            var parameters = QueryParameters.Build(nameof(since), since.AsDateValue())
+                                            .Add(nameof(until), until.AsDateValue());
+            var response = await GetAsync($"/api/v2/users/{userId}/stars/count", parameters).ConfigureAwait(false);
+
+            return await CreateResponseAsync<StarsCount>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
     }
 }

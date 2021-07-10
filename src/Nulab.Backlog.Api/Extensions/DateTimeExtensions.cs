@@ -26,5 +26,12 @@
         /// <returns>変換結果の日時を返します。</returns>
         public static DateTime FromUnixTime(this long self)
             => DateTimeOffset.FromUnixTimeSeconds(self).Add(LocalSystemUtcOffset).DateTime;
+
+        /// <summary>
+        /// 日時をクエリパラメータ用の値に変換します。
+        /// </summary>
+        /// <param name="self">自分自身</param>
+        /// <returns>変換結果の日付文字列を返します。</returns>
+        internal static string AsDateValue(this DateTime? self) => self.HasValue ? self.Value.ToString("yyyy-MM-dd") : null;
     }
 }

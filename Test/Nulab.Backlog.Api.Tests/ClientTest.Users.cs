@@ -1,5 +1,6 @@
 ﻿namespace Nulab.Backlog.Api.Tests
 {
+    using System;
     using System.Net;
     using System.Threading.Tasks;
     using Xunit;
@@ -132,5 +133,39 @@
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
+
+        [Fact]
+        public async Task Test_シナリオ_Users_GetStarsCountAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+            var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+
+            // act
+            var response = await client.Users.GetStarsCountAsync(mySelfResponse.Content.id).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
+        [Fact]
+        public async Task Test_シナリオ_Users_GetStarsCountAsync_パラメータ指定あり()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+            var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+
+            // act
+            var response = await client.Users.GetStarsCountAsync(mySelfResponse.Content.id
+                                                               , new DateTime(2021, 7, 1)
+                                                               , new DateTime(2030, 12, 31)).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
+
     }
 }

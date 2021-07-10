@@ -1,5 +1,6 @@
 ﻿namespace Nulab.Backlog.Api
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Data.Responses;
@@ -71,6 +72,15 @@
                                                       , int? maxId = null
                                                       , int? count = null
                                                       , string order = null);
+
+        /// <summary>
+        /// ユーザーの受け取ったスターの数を取得します。
+        /// </summary>
+        /// <param name="userId">ユーザーのID</param>
+        /// <param name="since">指定した日付以降のスターをカウント</param>
+        /// <param name="until">指定した日付以前のスターをカウント</param>
+        /// <returns></returns>
+        Task<BacklogResponse<StarsCount>> GetStarsCountAsync(int userId, DateTime? since = null, DateTime? until = null);
 
         /// <summary>
         /// 自分が最近見た課題一覧を取得します。
