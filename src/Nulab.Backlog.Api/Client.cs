@@ -55,6 +55,13 @@
             return await CreateResponseAsync<List<Priority>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
 
+        async Task<BacklogResponse<List<Resolution>>> IBacklogClient.GetResolutionsAsync()
+        {
+            var response = await GetAsync($"/api/v2/resolutions").ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<Resolution>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
+
         public IUsers Users => this;
 
         public ISpace Space => this;
