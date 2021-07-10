@@ -23,7 +23,7 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-project-list/#
         /// </remarks>
-        async Task<BacklogResponse<List<Project>>> IProjects.GetAsync(bool? archived = null
+        async Task<BacklogResponse<List<Project>>> IProjects.GetListAsync(bool? archived = null
                                                                     , bool? all = null)
         {
             var parameter = new QueryParameters().Add(nameof(archived), archived).Add(nameof(all), all);

@@ -25,7 +25,7 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-project-list/#
         /// </remarks>
-        Task<BacklogResponse<List<Project>>> GetAsync(bool? archived = null, bool? all = null);
+        Task<BacklogResponse<List<Project>>> GetListAsync(bool? archived = null, bool? all = null);
 
         /// <summary>
         /// プロジェクトユーザー一覧を取得します。

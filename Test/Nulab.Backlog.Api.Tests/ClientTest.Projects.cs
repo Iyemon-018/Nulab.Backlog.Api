@@ -30,13 +30,13 @@
         }
 
         [Fact]
-        public async Task Test_シナリオ_Projects_GetAsync()
+        public async Task Test_シナリオ_Projects_GetListAsync()
         {
             // arrange
             var client = TestFactory.CreateClient();
 
             // act 
-            var response = await client.Projects.GetAsync().ConfigureAwait(false);
+            var response = await client.Projects.GetListAsync().ConfigureAwait(false);
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
@@ -44,13 +44,13 @@
         }
 
         [Fact]
-        public async Task Test_シナリオ_Projects_GetAsync_アーカイブされたプロジェクト()
+        public async Task Test_シナリオ_Projects_GetListAsync_アーカイブされたプロジェクト()
         {
             // arrange
             var client = TestFactory.CreateClient();
 
             // act 
-            var response = await client.Projects.GetAsync(archived: true).ConfigureAwait(false);
+            var response = await client.Projects.GetListAsync(archived: true).ConfigureAwait(false);
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
@@ -58,13 +58,13 @@
         }
 
         [Fact]
-        public async Task Test_シナリオ_Projects_GetAsync_アーカイブされていないプロジェクト()
+        public async Task Test_シナリオ_Projects_GetListAsync_アーカイブされていないプロジェクト()
         {
             // arrange
             var client = TestFactory.CreateClient();
 
             // act 
-            var response = await client.Projects.GetAsync(archived: false).ConfigureAwait(false);
+            var response = await client.Projects.GetListAsync(archived: false).ConfigureAwait(false);
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
@@ -72,13 +72,13 @@
         }
 
         [Fact]
-        public async Task Test_シナリオ_Projects_GetAsync_管理者権限が有効なすべてのプロジェクト()
+        public async Task Test_シナリオ_Projects_GetListAsync_管理者権限が有効なすべてのプロジェクト()
         {
             // arrange
             var client = TestFactory.CreateClient();
 
             // act 
-            var response = await client.Projects.GetAsync(all: true).ConfigureAwait(false);
+            var response = await client.Projects.GetListAsync(all: true).ConfigureAwait(false);
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
