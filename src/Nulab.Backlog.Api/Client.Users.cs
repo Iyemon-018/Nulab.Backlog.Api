@@ -104,5 +104,15 @@
 
             return await CreateResponseAsync<List<RecentlyViewedProject>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        async Task<BacklogResponse<List<RecentlyViewedWiki>>> IUsers.GetRecentlyViewedWikisAsync(string order, int? offset, int? count)
+        {
+            var parameters = QueryParameters.Build(nameof(order), order)
+                                            .Add(nameof(offset), offset)
+                                            .Add(nameof(count), count);
+            var response = await GetAsync($"/api/v2/users/myself/recentlyViewedWikis", parameters).ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<RecentlyViewedWiki>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }
