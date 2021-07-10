@@ -99,5 +99,21 @@
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
+
+        [Fact]
+        public async Task Test_シナリオ_Projects_GetAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+            var data = TestFactory.Load();
+
+            // act
+            var response = await client.Projects.GetAsync(data.projectKey).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
     }
 }

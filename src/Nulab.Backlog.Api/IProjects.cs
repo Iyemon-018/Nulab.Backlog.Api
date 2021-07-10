@@ -28,6 +28,16 @@
         Task<BacklogResponse<List<Project>>> GetListAsync(bool? archived = null, bool? all = null);
 
         /// <summary>
+        /// プロジェクト情報を取得します。
+        /// </summary>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-project/#
+        /// </remarks>
+        Task<BacklogResponse<Project>> GetAsync(string projectIdOrKey);
+
+        /// <summary>
         /// プロジェクトユーザー一覧を取得します。
         /// </summary>
         /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>

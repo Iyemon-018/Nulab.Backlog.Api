@@ -40,5 +40,12 @@
 
             return await CreateResponseAsync<List<ProjectUser>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        async Task<BacklogResponse<Project>> IProjects.GetAsync(string projectIdOrKey)
+        {
+            var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}").ConfigureAwait(false);
+
+            return await CreateResponseAsync<Project>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }
