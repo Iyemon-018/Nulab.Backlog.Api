@@ -97,5 +97,40 @@
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
+
+        [Fact]
+        public async Task Test_シナリオ_Users_GetStarsAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+            var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+
+            // act
+            var response = await client.Users.GetStarsAsync(mySelfResponse.Content.id).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
+        [Fact]
+        public async Task Test_シナリオ_Users_GetStarsAsync_パラメータ指定あり()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+            var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+
+            // act
+            var response = await client.Users.GetStarsAsync(mySelfResponse.Content.id
+                                                          , minId: 0
+                                                          , maxId: 999999999
+                                                          , count: 30
+                                                          , order: "asc")
+                                                        .ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
     }
 }

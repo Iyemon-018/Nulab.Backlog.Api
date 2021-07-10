@@ -55,6 +55,24 @@
                                                                     , string order = null);
 
         /// <summary>
+        /// ユーザーの受け取ったスター一覧を取得します。
+        /// </summary>
+        /// <param name="userId">ユーザーのID</param>
+        /// <param name="minId">最小ID</param>
+        /// <param name="maxId">最大ID</param>
+        /// <param name="count">取得上限(1-100) 指定が無い場合は20</param>
+        /// <param name="order">“asc”または”desc” 指定が無い場合は”desc”</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-received-star-list/#
+        /// </remarks>
+        Task<BacklogResponse<List<Star>>> GetStarsAsync(int userId
+                                                      , int? minId = null
+                                                      , int? maxId = null
+                                                      , int? count = null
+                                                      , string order = null);
+
+        /// <summary>
         /// 自分が最近見た課題一覧を取得します。
         /// </summary>
         /// <param name="order">“asc”または”desc” 指定が無い場合は”desc”</param>
