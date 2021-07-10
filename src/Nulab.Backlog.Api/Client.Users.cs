@@ -94,5 +94,15 @@
 
             return await CreateResponseAsync<StarsCount>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        async Task<BacklogResponse<List<RecentlyViewedProject>>> IUsers.GetRecentlyViewedProjectsAsync(string order, int? offset, int? count)
+        {
+            var parameters = QueryParameters.Build(nameof(order), order)
+                                            .Add(nameof(offset), offset)
+                                            .Add(nameof(count), count);
+            var response = await GetAsync($"/api/v2/users/myself/recentlyViewedProjects", parameters).ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<RecentlyViewedProject>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }

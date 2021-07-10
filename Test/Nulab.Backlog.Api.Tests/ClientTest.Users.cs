@@ -166,6 +166,18 @@
             _outputHelper.WriteLine(response);
         }
 
+        [Fact]
+        public async Task Test_シナリオ_Users_GetRecentlyViewedProjectsAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
 
+            // act
+            var response = await client.Users.GetRecentlyViewedProjectsAsync().ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
     }
 }

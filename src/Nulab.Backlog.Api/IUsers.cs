@@ -93,5 +93,17 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-issues/#
         /// </remarks>
         Task<BacklogResponse<List<RecentlyViewedIssue>>> GetRecentlyViewedIssuesAsync(string order = "", int offset = 0, int count = 20);
+
+        /// <summary>
+        /// 自分が最近見たプロジェクト一覧を取得します。
+        /// </summary>
+        /// <param name="order">“asc”または”desc” 指定が無い場合は”desc”</param>
+        /// <param name="offset"></param>
+        /// <param name="count">取得上限(1-100) 指定が無い場合は20</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-projects/#
+        /// </remarks>
+        Task<BacklogResponse<List<RecentlyViewedProject>>> GetRecentlyViewedProjectsAsync(string order = "", int? offset = null, int? count = null);
     }
 }
