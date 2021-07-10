@@ -7,6 +7,13 @@
 
     public partial class Client : IProjects
     {
+        async Task<BacklogResponse<List<ProjectStatus>>> IProjects.GetStatuesAsync(string projectIdOrKey)
+        {
+            var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}/statuses").ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<ProjectStatus>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
+
         /// <summary>
         /// プロジェクト一覧を取得します。
         /// </summary>

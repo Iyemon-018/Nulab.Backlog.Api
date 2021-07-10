@@ -7,6 +7,16 @@
     public interface IProjects
     {
         /// <summary>
+        /// プロジェクトの状態一覧を取得します。
+        /// </summary>
+        /// <param name="projectIdOrKey">プロジェクトID もしくは　プロジェクトキー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-status-list-of-project/#
+        /// </remarks>
+        Task<BacklogResponse<List<ProjectStatus>>> GetStatuesAsync(string projectIdOrKey);
+
+        /// <summary>
         /// プロジェクト一覧を取得します。
         /// </summary>
         /// <param name="archived">省略された場合は全てのプロジェクト、falseの場合はアーカイブされていないプロジェクト、trueの場合はアーカイブされたプロジェクトを返します。</param>
