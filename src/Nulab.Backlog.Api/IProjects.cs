@@ -46,5 +46,15 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-project-user-list/#
         /// </remarks>
         Task<BacklogResponse<List<ProjectUser>>> GetUsersAsync(string projectIdOrKey, bool? excludeGroupMembers = null);
+
+        /// <summary>
+        /// プロジェクト管理者一覧を取得します。
+        /// </summary>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-project-administrators/#
+        /// </remarks>
+        Task<BacklogResponse<List<User>>> GetAdministratorsAsync(string projectIdOrKey);
     }
 }
