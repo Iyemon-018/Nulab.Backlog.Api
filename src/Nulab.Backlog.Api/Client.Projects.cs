@@ -55,6 +55,13 @@
             return await CreateResponseAsync<List<IssueType>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
 
+        public async Task<BacklogResponse<List<Category>>> GetCategoriesAsync(string projectIdOrKey)
+        {
+            var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}/categories").ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<Category>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
+
         async Task<BacklogResponse<Project>> IProjects.GetAsync(string projectIdOrKey)
         {
             var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}").ConfigureAwait(false);

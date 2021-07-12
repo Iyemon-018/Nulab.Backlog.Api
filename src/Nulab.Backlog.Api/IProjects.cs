@@ -66,5 +66,15 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-issue-type-list/#
         /// </remarks>
         Task<BacklogResponse<List<IssueType>>> GetIssueTypesAsync(string projectIdOrKey);
+
+        /// <summary>
+        /// カテゴリー一覧を取得します。
+        /// </summary>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-category-list/#
+        /// </remarks>
+        Task<BacklogResponse<List<Category>>> GetCategoriesAsync(string projectIdOrKey);
     }
 }
