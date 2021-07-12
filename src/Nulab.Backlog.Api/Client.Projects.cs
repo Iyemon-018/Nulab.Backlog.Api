@@ -32,6 +32,13 @@
             return await CreateResponseAsync<List<Project>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
 
+        async Task<BacklogResponse<Project>> IProjects.GetAsync(string projectIdOrKey)
+        {
+            var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}").ConfigureAwait(false);
+
+            return await CreateResponseAsync<Project>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
+
         async Task<BacklogResponse<List<ProjectUser>>> IProjects.GetUsersAsync(string projectIdOrKey
                                                                              , bool? excludeGroupMembers = null)
         {
@@ -69,11 +76,11 @@
             return await CreateResponseAsync<List<ProjectVersion>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
 
-        async Task<BacklogResponse<Project>> IProjects.GetAsync(string projectIdOrKey)
+        async Task<BacklogResponse<List<CustomField>>> IProjects.GetCustomFieldsAsync(string projectIdOrKey)
         {
-            var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}").ConfigureAwait(false);
+            var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}/customFields").ConfigureAwait(false);
 
-            return await CreateResponseAsync<Project>(response, HttpStatusCode.OK).ConfigureAwait(false);
+            return await CreateResponseAsync<List<CustomField>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
     }
 }

@@ -86,5 +86,15 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-version-milestone-list/#
         /// </remarks>
         Task<BacklogResponse<List<ProjectVersion>>> GetVersionsAsync(string projectIdOrKey);
+
+        /// <summary>
+        /// カスタム属性一覧を取得します。
+        /// </summary>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-custom-field-list/#
+        /// </remarks>
+        Task<BacklogResponse<List<CustomField>>> GetCustomFieldsAsync(string projectIdOrKey);
     }
 }
