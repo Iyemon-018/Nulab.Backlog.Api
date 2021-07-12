@@ -107,5 +107,16 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-shared-files/#
         /// </remarks>
         Task<BacklogResponse<List<SharedFile>>> GetFilesAsync(string projectIdOrKey, string path);
+
+        /// <summary>
+        /// 共有ファイルをダウンロードします。
+        /// </summary>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-file/#
+        /// </remarks>
+        Task<BacklogResponse<ContentFile>> GetFileContentAsync(string projectIdOrKey, int id);
     }
 }

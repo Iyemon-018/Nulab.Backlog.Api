@@ -34,6 +34,22 @@
             }
         }
 
+        private async Task<BacklogResponse<ContentFile>> CreateFileResponseAsync(RestApiResponse response
+            , HttpStatusCode successStatusCode)
+        {
+            if (response.StatusCode == successStatusCode)
+            {
+                var content = response.AsFile();
+                var rateLimiting = new RateLimiting(response.Limit, response.Remaining, response.Reset);
+                return new BacklogResponse<ContentFile>(response.StatusCode, content, rateLimiting);
+            }
+            else
+            {
+                var errors = await response.DeserializeContentAsync<Errors>();
+                return new BacklogResponse<ContentFile>(response.StatusCode, errors);
+            }
+        }
+
         private async Task<RestApiResponse> GetAsync(string url
                                                    , QueryParameters parameter = null)
         {

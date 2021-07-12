@@ -89,5 +89,12 @@
 
             return await CreateResponseAsync<List<SharedFile>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        async Task<BacklogResponse<ContentFile>> IProjects.GetFileContentAsync(string projectIdOrKey, int id)
+        {
+            var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}/files/{id}").ConfigureAwait(false);
+
+            return await CreateFileResponseAsync(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }

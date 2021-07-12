@@ -1,4 +1,8 @@
-﻿namespace Nulab.Backlog.Api.Tests
+﻿using System;
+using System.IO;
+using System.Text;
+
+namespace Nulab.Backlog.Api.Tests
 {
     using System.Net;
     using System.Threading.Tasks;
@@ -203,6 +207,40 @@
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
+        }
+
+        [Fact]
+        public async Task Test_シナリオ_Projects_GetFileContentAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+            var data = TestFactory.Load();
+
+            // act
+            var response = await client.Projects.GetFileContentAsync(data.projectKey, 12052295).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
+        [Fact]
+        public async Task Test_シナリオ_Projects_GetFileContentAsync_Download()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+            var data = TestFactory.Load();
+            var response = await client.Projects.GetFileContentAsync(data.projectKey, 12050703).ConfigureAwait(false);
+
+            // act
+            string fileName = null;
+            var ex = Record.Exception(() => fileName = response.Content.DownloadAsync(Path.Combine(Environment.CurrentDirectory, "Downloads")).Result);
+
+            // assert
+            ex.IsNull();
+            _outputHelper.WriteLine(fileName);
+            _outputHelper.WriteLine(":Content -----------------------");
+            _outputHelper.WriteLine(await File.ReadAllTextAsync(fileName, Encoding.UTF8));
         }
 
     }

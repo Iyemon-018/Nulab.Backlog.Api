@@ -42,5 +42,10 @@
 
             return _serializer.Deserialize<T>(jsonReader);
         }
+
+        public ContentFile AsFile()
+        {
+            return new ContentFile(_response);
+        }
     }
 }
