@@ -1,22 +1,19 @@
 ﻿namespace Nulab.Backlog.Api.Tests
 {
-    using System;
-    using System.Collections.Generic;
     using System.Net;
-    using System.Text;
     using System.Threading.Tasks;
     using Xunit;
 
     public partial class ClientTest
     {
         [Fact]
-        public async Task Test_シナリオ_GetPrioritiesAsync()
+        public async Task Test_シナリオ_Configurations_GetPrioritiesAsync()
         {
             // arrange
             var client = TestFactory.CreateClient();
 
             // act
-            var response = await client.GetPrioritiesAsync().ConfigureAwait(false);
+            var response = await client.Configurations.GetPrioritiesAsync().ConfigureAwait(false);
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
@@ -24,13 +21,13 @@
         }
 
         [Fact]
-        public async Task Test_シナリオ_GetResolutionsAsync()
+        public async Task Test_シナリオ_Configurations_GetResolutionsAsync()
         {
             // arrange
             var client = TestFactory.CreateClient();
 
             // act
-            var response = await client.GetResolutionsAsync().ConfigureAwait(false);
+            var response = await client.Configurations.GetResolutionsAsync().ConfigureAwait(false);
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
