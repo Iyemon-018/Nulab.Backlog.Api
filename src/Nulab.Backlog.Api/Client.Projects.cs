@@ -96,5 +96,12 @@
 
             return await CreateFileResponseAsync(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        async Task<BacklogResponse<DiskUsage>> IProjects.GetDiskUsageAsync(string projectIdOrKey)
+        {
+            var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}/diskUsage").ConfigureAwait(false);
+
+            return await CreateResponseAsync<DiskUsage>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }

@@ -243,5 +243,20 @@ namespace Nulab.Backlog.Api.Tests
             _outputHelper.WriteLine(await File.ReadAllTextAsync(fileName, Encoding.UTF8));
         }
 
+        [Fact]
+        public async Task Test_シナリオ_Projects_GetDiskUsageAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+            var data = TestFactory.Load();
+
+            // act
+            var response = await client.Projects.GetDiskUsageAsync(data.projectKey).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
     }
 }
