@@ -76,5 +76,15 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-category-list/#
         /// </remarks>
         Task<BacklogResponse<List<Category>>> GetCategoriesAsync(string projectIdOrKey);
+
+        /// <summary>
+        /// バージョン(マイルストーン)一覧を取得します。
+        /// </summary>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-version-milestone-list/#
+        /// </remarks>
+        Task<BacklogResponse<List<ProjectVersion>>> GetVersionsAsync(string projectIdOrKey);
     }
 }
