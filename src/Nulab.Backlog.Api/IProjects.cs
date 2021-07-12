@@ -96,5 +96,16 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-custom-field-list/#
         /// </remarks>
         Task<BacklogResponse<List<CustomField>>> GetCustomFieldsAsync(string projectIdOrKey);
+
+        /// <summary>
+        /// 共有ファイル一覧を取得します。
+        /// </summary>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <param name="path">ディレクトリのパス</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-shared-files/#
+        /// </remarks>
+        Task<BacklogResponse<List<SharedFile>>> GetFilesAsync(string projectIdOrKey, string path);
     }
 }

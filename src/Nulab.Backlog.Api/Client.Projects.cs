@@ -82,5 +82,12 @@
 
             return await CreateResponseAsync<List<CustomField>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        async Task<BacklogResponse<List<SharedFile>>> IProjects.GetFilesAsync(string projectIdOrKey, string path)
+        {
+            var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}/files/metadata/{path}").ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<SharedFile>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }
