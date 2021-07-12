@@ -21,6 +21,8 @@ using Nulab.Backlog.Api;
 using Nulab.Backlog.Api.Data.Responses;
 ```
 
+認証ユーザー情報を取得する場合は次のようなコードになります。
+
 ```cs
 using System;
 using System.Threading.Tasks;
@@ -45,45 +47,56 @@ namespace Examples
 }
 ```
 
-## API 一覧
+### クライアント操作
+
+Backlog API を呼び出すには`IBacklogClient`を実装した`Client`クラスを使用します。
+`IBacklogClient`インターフェースには、Web API の役割ごとに分類された各インターフェースをプロパティとして保持しています。
+それぞれのインターフェースから呼び出すことのできる Web API については[API 一覧](#API一覧)を参照してください。
+
+- [IUsers](./src/Nulab.Backlog.Api/IUsers.cs): `/api/v2/users`関連の Backlog API を呼び出します。
+- [IProjects](./src/Nulab.Backlog.Api/IProjects.cs): `/api/v2/projects`関連の Backlog API を呼び出します。
+- [ISpace](./src/Nulab.Backlog.Api/ISpace.cs): `/api/v2/space`関連の Backlog API を呼び出します。
+- [IConfigurations](./src/Nulab.Backlog.Api/IConfigurations.cs): 設定関連の Backlog API を呼び出します。
+
+## API一覧
 
 | タイトル(リンク) | 説明 | メソッド | URL | API | 対応 |
 |:----------------|:-----|:---------|:----|:----|:-----|
-| [スペース情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-space/) | スペースの情報を取得します。 | GET | /api/v2/space |  |  |
-| [最近の更新の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-recent-updates/) | スペース上で行われた最近の更新の一覧を取得します。 | GET | /api/v2/space/activities |  |  |
+| [スペース情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-space/) | スペースの情報を取得します。 | GET | /api/v2/space | ✔ | [ISpace.GetAsync](./src/Nulab.Backlog.Api/ISpace.cs) |
+| [最近の更新の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-recent-updates/) | スペース上で行われた最近の更新の一覧を取得します。 | GET | /api/v2/space/activities | ✔ | [ISpace.GetActivitiesAsync](./src/Nulab.Backlog.Api/ISpace.cs) |
 | [スペースアイコン画像の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-space-logo/) | スペースのアイコン画像を取得します。 | GET | /api/v2/space/image |  |  |
-| [スペースのお知らせの取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-space-notification/) | スペースのお知らせの情報を取得します。 | GET | /api/v2/space/notification |  |  |
-| [スペースのお知らせの更新](https://developer.nulab.com/ja/docs/backlog/api/2/update-space-notification/) | スペースのお知らせの情報を更新します。 | PUT | /api/v2/space/notification |  |  |
-| [スペースの容量使用状況の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-space-disk-usage/) | スペースの容量使用状況の情報を取得します。 | GET | /api/v2/space/diskUsage |  |  |
+| [スペースのお知らせの取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-space-notification/) | スペースのお知らせの情報を取得します。 | GET | /api/v2/space/notification | ✔ | [ISpace.GetNotificationAsync](./src/Nulab.Backlog.Api/ISpace.cs) |
+| [スペースのお知らせの更新](https://developer.nulab.com/ja/docs/backlog/api/2/update-space-notification/) | スペースのお知らせの情報を更新します。 | PUT | /api/v2/space/notification | ✔ | [ISpace.PutNotificationAsync](./src/Nulab.Backlog.Api/ISpace.cs) |
+| [スペースの容量使用状況の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-space-disk-usage/) | スペースの容量使用状況の情報を取得します。 | GET | /api/v2/space/diskUsage | ✔ | [ISpace.GetDiskUsageAsync](./src/Nulab.Backlog.Api/ISpace.cs) |
 | [添付ファイルの送信](https://developer.nulab.com/ja/docs/backlog/api/2/post-attachment-file/) | 課題、コメントまたはWikiに添付するファイルを送信し、添付ファイルに発行されたIDを取得します。 | POST | /api/v2/space/attachment |  |  |
-| [ユーザー一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-user-list/) | スペースのユーザーの一覧を取得します。 | GET | /api/v2/users |  |  |
-| [ユーザー情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-user/) | ユーザー情報を取得します。 | GET | /api/v2/users/:userId |  |  |
+| [ユーザー一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-user-list/) | スペースのユーザーの一覧を取得します。 | GET | /api/v2/users | ✔ | [IUsers.GetListAsync](./src/Nulab.Backlog.Api/IUsers.cs) |
+| [ユーザー情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-user/) | ユーザー情報を取得します。 | GET | /api/v2/users/:userId | ✔ | [IUsers.GetAsync](./src/Nulab.Backlog.Api/IUsers.cs) |
 | [ユーザーの追加](https://developer.nulab.com/ja/docs/backlog/api/2/add-user/) | スペースに新しいユーザーを追加します。<br/>プロジェクト管理者は管理者権限のユーザを追加することは出来ません。<br/>新プランのスペースではこのAPIを利用できません。 | POST | /api/v2/users |  |  |
 | [ユーザーの更新](https://developer.nulab.com/ja/docs/backlog/api/2/update-user/) | ユーザーの情報を更新します。<br/>新プランのスペースではこのAPIを利用できません。 | PATCH | /api/v2/users/:userId |  |  |
 | [ユーザーの削除](https://developer.nulab.com/ja/docs/backlog/api/2/delete-user/) | ユーザーをスペースから削除します。<br/>新プランのスペースではこのAPIを利用できません。 | DELETE | /api/v2/users/:userId |  |  |
-| [認証ユーザー情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-own-user/) | APIとの認証に使用しているユーザーの情報を取得します。 | GET | /api/v2/users/myself |  |  |
+| [認証ユーザー情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-own-user/) | APIとの認証に使用しているユーザーの情報を取得します。 | GET | /api/v2/users/myself | ✔ | [IUsers.GetMySelfAsync](./src/Nulab.Backlog.Api/IUsers.cs) |
 | [ユーザーアイコンの取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-user-icon/) | ユーザーのアイコン画像を取得します。 | GET | /api/v2/users/:userId/icon |  |  |
-| [ユーザーの最近の活動の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-user-recent-updates/) | ユーザーの最近の活動の一覧を取得します。 | GET | /api/v2/users/:userId/activities |  |  |
-| [ユーザーの受け取ったスター一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-received-star-list/) | ユーザーの受け取ったスターの一覧を取得します。 | GET | /api/v2/users/:userId/stars |  |  |
-| [ユーザーの受け取ったスターの数の取得](https://developer.nulab.com/ja/docs/backlog/api/2/count-user-received-stars/) | ユーザーの受け取ったスターの数を取得します。 | GET | /api/v2/users/:userId/stars/count |  |  |
-| [自分が最近見た課題一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-issues/) | APIとの認証に使用しているユーザーが最近見た課題の一覧を取得します。 | GET | /api/v2/users/myself/recentlyViewedIssues |  |  |
-| [自分が最近見たプロジェクト一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-projects/) | APIとの認証に使用しているユーザーが最近見たプロジェクトの一覧を取得します。 | GET | /api/v2/users/myself/recentlyViewedProjects |  |  |
-| [自分が最近見たWiki一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-wikis/) | APIとの認証に使用しているユーザーが最近見たWikiの一覧を取得します。 | GET | /api/v2/users/myself/recentlyViewedWikis |  |  |
-| [プロジェクトの状態一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-status-list-of-project/) | プロジェクト固有の課題に設定できる状態一覧を取得します。 | GET | /api/v2/projects/:projectIdOrKey/statuses |  |  |
-| [優先度一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-priority-list/) | 課題に設定できる優先度の一覧を取得します。 | GET | /api/v2/priorities |  |  |
-| [完了理由一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-resolution-list/) | 課題に設定できる完了理由の一覧を取得します。 | GET | /api/v2/resolutions |  |  |
-| [プロジェクト一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-project-list/) | プロジェクトの一覧を取得します。 | GET | /api/v2/projects |  |  |
+| [ユーザーの最近の活動の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-user-recent-updates/) | ユーザーの最近の活動の一覧を取得します。 | GET | /api/v2/users/:userId/activities | ✔ | [IUsers.GetActivitiesAsync](./src/Nulab.Backlog.Api/IUsers.cs) |
+| [ユーザーの受け取ったスター一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-received-star-list/) | ユーザーの受け取ったスターの一覧を取得します。 | GET | /api/v2/users/:userId/stars | ✔ | [IUsers.GetStarsAsync](./src/Nulab.Backlog.Api/IUsers.cs) |
+| [ユーザーの受け取ったスターの数の取得](https://developer.nulab.com/ja/docs/backlog/api/2/count-user-received-stars/) | ユーザーの受け取ったスターの数を取得します。 | GET | /api/v2/users/:userId/stars/count | ✔ | [IUsers.GetStarsCountAsync](./src/Nulab.Backlog.Api/IUsers.cs) |
+| [自分が最近見た課題一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-issues/) | APIとの認証に使用しているユーザーが最近見た課題の一覧を取得します。 | GET | /api/v2/users/myself/recentlyViewedIssues | ✔ | [IUsers.GetRecentlyViewedIssuesAsync](./src/Nulab.Backlog.Api/IUsers.cs) |
+| [自分が最近見たプロジェクト一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-projects/) | APIとの認証に使用しているユーザーが最近見たプロジェクトの一覧を取得します。 | GET | /api/v2/users/myself/recentlyViewedProjects | ✔ | [IUsers.GetRecentlyViewedProjectsAsync](./src/Nulab.Backlog.Api/IUsers.cs) |
+| [自分が最近見たWiki一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-wikis/) | APIとの認証に使用しているユーザーが最近見たWikiの一覧を取得します。 | GET | /api/v2/users/myself/recentlyViewedWikis | ✔ | [IUsers.GetRecentlyViewedWikisAsync](./src/Nulab.Backlog.Api/IUsers.cs) |
+| [プロジェクトの状態一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-status-list-of-project/) | プロジェクト固有の課題に設定できる状態一覧を取得します。 | GET | /api/v2/projects/:projectIdOrKey/statuses | ✔ | [IProjects.GetStatuesAsync](./src/Nulab.Backlog.Api/IProjects.cs) |
+| [優先度一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-priority-list/) | 課題に設定できる優先度の一覧を取得します。 | GET | /api/v2/priorities | ✔ | [IConfigurations.GetPrioritiesAsync](./src/Nulab.Backlog.Api/IConfigurations.cs) |
+| [完了理由一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-resolution-list/) | 課題に設定できる完了理由の一覧を取得します。 | GET | /api/v2/resolutions | ✔ | [IConfigurations.GetResolutionsAsync](./src/Nulab.Backlog.Api/IConfigurations.cs) |
+| [プロジェクト一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-project-list/) | プロジェクトの一覧を取得します。 | GET | /api/v2/projects | ✔ | [IProjects.GetListAsync](./src/Nulab.Backlog.Api/IProjects.cs) |
 | [プロジェクトの追加](https://developer.nulab.com/ja/docs/backlog/api/2/add-project/) | 新しいプロジェクトを追加します。 | POST | /api/v2/projects |  |  |
-| [プロジェクト情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-project/) | プロジェクトの情報を取得します。 | GET | /api/v2/projects/:projectIdOrKey |  |  |
+| [プロジェクト情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-project/) | プロジェクトの情報を取得します。 | GET | /api/v2/projects/:projectIdOrKey | ✔ | [IProjects.GetAsync](./src/Nulab.Backlog.Api/IProjects.cs) |
 | [プロジェクト情報の更新](https://developer.nulab.com/ja/docs/backlog/api/2/update-project/) | プロジェクトの情報を更新します。 | PATCH | /api/v2/projects/:projectIdOrKey |  |  |
 | [プロジェクトの削除](https://developer.nulab.com/ja/docs/backlog/api/2/delete-project/) | プロジェクトを削除します。 | DELETE | /api/v2/projects/:projectIdOrKey |  |  |
 | [プロジェクトアイコンの取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-project-icon/) | プロジェクトのアイコン画像を取得します。 | GET | /api/v2/projects/:projectIdOrKey/image |  |  |
 | [プロジェクトの最近の活動の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-project-recent-updates/) | プロジェクト上の最近の活動の一覧を取得します。 | GET | /api/v2/projects/:projectIdOrKey/activities |  |  |
 | [プロジェクトユーザーの追加](https://developer.nulab.com/ja/docs/backlog/api/2/add-project-user/) | プロジェクトにユーザーを追加します。 | POST | /api/v2/projects/:projectIdOrKey/users |  |  |
-| [プロジェクトユーザー一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-project-user-list/) | プロジェクトのユーザーの一覧を取得します。 | GET | /api/v2/projects/:projectIdOrKey/users |  |  |
+| [プロジェクトユーザー一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-project-user-list/) | プロジェクトのユーザーの一覧を取得します。 | GET | /api/v2/projects/:projectIdOrKey/users | ✔ | [IProjects.GetUsersAsync](./src/Nulab.Backlog.Api/IProjects.cs) |
 | [プロジェクトユーザーの削除](https://developer.nulab.com/ja/docs/backlog/api/2/delete-project-user/) | プロジェクトからユーザーを削除します。 | DELETE | /api/v2/projects/:projectIdOrKey/users |  |  |
 | [プロジェクト管理者の追加](https://developer.nulab.com/ja/docs/backlog/api/2/add-project-administrator/) | プロジェクトユーザーにプロジェクト管理者権限を追加します。 | POST | /api/v2/projects/:projectIdOrKey/administrators |  |  |
-| [プロジェクト管理者一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-project-administrators/) | プロジェクト管理者に設定されているユーザーの一覧を取得します。 | GET | /api/v2/projects/:projectIdOrKey/administrators |  |  |
+| [プロジェクト管理者一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-project-administrators/) | プロジェクト管理者に設定されているユーザーの一覧を取得します。 | GET | /api/v2/projects/:projectIdOrKey/administrators | ✔ | [IProjects.GetAdministratorsAsync](./src/Nulab.Backlog.Api/IProjects.cs) |
 | [プロジェクト管理者の削除](https://developer.nulab.com/ja/docs/backlog/api/2/delete-project-administrator/) | プロジェクトユーザーからプロジェクト管理者権限を削除します。 | DELETE | /api/v2/projects/:projectIdOrKey/administrators |  |  |
 | [状態の追加](https://developer.nulab.com/ja/docs/backlog/api/2/add-status/) | プロジェクトに状態を追加します。<br/>1プロジェクトにつき8個まで状態を追加できます。<br/>標準の4つの状態と合わせると、合計12個の状態を設定できます。 | POST | /api/v2/projects/:projectIdOrKey/statuses |  |  |
 | [状態情報の更新](https://developer.nulab.com/ja/docs/backlog/api/2/update-status/) | 追加した状態の情報を更新します。 | PATCH | /api/v2/projects/:projectIdOrKey/statuses/:id |  |  |
