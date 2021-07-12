@@ -103,5 +103,12 @@
 
             return await CreateResponseAsync<DiskUsage>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        async Task<BacklogResponse<List<Webhook>>> IProjects.GetWebHooksAsync(string projectIdOrKey)
+        {
+            var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}/webhooks").ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<Webhook>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }

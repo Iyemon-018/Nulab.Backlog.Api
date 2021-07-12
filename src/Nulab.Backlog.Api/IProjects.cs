@@ -128,5 +128,15 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-project-disk-usage/#
         /// </remarks>
         Task<BacklogResponse<DiskUsage>> GetDiskUsageAsync(string projectIdOrKey);
+
+        /// <summary>
+        /// Webhook一覧を取得します。
+        /// </summary>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-webhooks/#
+        /// </remarks>
+        Task<BacklogResponse<List<Webhook>>> GetWebHooksAsync(string projectIdOrKey);
     }
 }
