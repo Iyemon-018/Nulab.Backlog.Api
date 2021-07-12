@@ -48,6 +48,13 @@
             return await CreateResponseAsync<List<User>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
 
+        public async Task<BacklogResponse<List<IssueType>>> GetIssueTypesAsync(string projectIdOrKey)
+        {
+            var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}/issueTypes").ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<IssueType>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
+
         async Task<BacklogResponse<Project>> IProjects.GetAsync(string projectIdOrKey)
         {
             var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}").ConfigureAwait(false);

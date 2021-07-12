@@ -11,5 +11,9 @@
         public string color { get; set; }
         
         public int displayOrder { get; set; }
+
+        public string templateSummary { get; set; }
+
+        public string templateDescription { get; set; }
     }
 }
