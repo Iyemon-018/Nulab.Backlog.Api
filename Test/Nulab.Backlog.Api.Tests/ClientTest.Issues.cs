@@ -78,5 +78,19 @@ namespace Nulab.Backlog.Api.Tests
             _outputHelper.WriteLine(response);
         }
 
+        [Fact]
+        public async Task Test_シナリオ_Issues_GetAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // act
+            var response = await client.Issues.GetAsync("WEBAPITEST-1").ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
     }
 }

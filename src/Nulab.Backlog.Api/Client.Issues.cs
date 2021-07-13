@@ -21,5 +21,12 @@
 
             return await CreateResponseAsync<IssueCount>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        async Task<BacklogResponse<Issue>> IIssues.GetAsync(string issueIdOrKey)
+        {
+            var response = await GetAsync($"/api/v2/issues/{issueIdOrKey}").ConfigureAwait(false);
+
+            return await CreateResponseAsync<Issue>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }
