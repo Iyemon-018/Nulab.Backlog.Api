@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using Data.Responses;
     using Newtonsoft.Json;
+    using Data.Parameters;
 
     public sealed partial class Client : IBacklogClient
     {
@@ -50,6 +51,9 @@
             }
         }
 
+        private async Task<RestApiResponse> GetAsync(string url, IQueryParameter queryParameter) =>
+            await GetAsync(url, queryParameter.AsParameter()).ConfigureAwait(false);
+
         private async Task<RestApiResponse> GetAsync(string url
                                                    , QueryParameters parameter = null)
         {
@@ -70,5 +74,7 @@
         public IProjects Projects => this;
 
         public IConfigurations Configurations => this;
+
+        public IIssues Issues => this;
     }
 }

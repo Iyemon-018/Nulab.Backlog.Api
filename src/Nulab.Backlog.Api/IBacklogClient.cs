@@ -9,5 +9,7 @@
         IProjects Projects { get; }
 
         IConfigurations Configurations { get; }
+
+        IIssues Issues { get; }
     }
 }

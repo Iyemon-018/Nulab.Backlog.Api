@@ -40,7 +40,7 @@
                                         .ToString();
 
             // assert
-            actual.Is("?key=123&order=desc&boolean=true&date=2021/06/28&array[0]=9&array[1]=8&array[2]=7");
+            actual.Is("?key=123&order=desc&boolean=true&date=2021-06-28&array[0]=9&array[1]=8&array[2]=7");
         }
 
         [Fact]
