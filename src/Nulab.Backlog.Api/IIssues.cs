@@ -36,5 +36,16 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-issue/#
         /// </remarks>
         Task<BacklogResponse<Issue>> GetAsync(string issueIdOrKey);
+
+        /// <summary>
+        /// 課題コメントを取得します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <param name="parameter">クエリパラメータ</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-comment-list/#
+        /// </remarks>
+        Task<BacklogResponse<List<Comment>>> GetCommentsAsync(string issueIdOrKey, CommentParameter parameter = null);
     }
 }

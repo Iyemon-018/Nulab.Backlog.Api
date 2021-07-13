@@ -92,5 +92,34 @@ namespace Nulab.Backlog.Api.Tests
             _outputHelper.WriteLine(response);
         }
 
+        [Fact]
+        public async Task Test_シナリオ_Issues_GetCommentsAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // act
+            var response = await client.Issues.GetCommentsAsync("WEBAPITEST-1").ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
+        [Fact]
+        public async Task Test_シナリオ_Issues_GetCommentsAsync_パラメータ指定あり()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+            var parameter = new CommentParameter(0, 99999999, 10, OrderType.Asc);
+
+            // act
+            var response = await client.Issues.GetCommentsAsync("WEBAPITEST-1", parameter).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
     }
 }

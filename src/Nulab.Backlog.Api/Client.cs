@@ -52,7 +52,7 @@
         }
 
         private async Task<RestApiResponse> GetAsync(string url, IQueryParameter queryParameter) =>
-            await GetAsync(url, queryParameter.AsParameter()).ConfigureAwait(false);
+            await GetAsync(url, queryParameter?.AsParameter()).ConfigureAwait(false);
 
         private async Task<RestApiResponse> GetAsync(string url
                                                    , QueryParameters parameter = null)
