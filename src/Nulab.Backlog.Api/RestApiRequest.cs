@@ -1,7 +1,7 @@
 ﻿namespace Nulab.Backlog.Api
 {
+    using System.Linq;
     using System.Net.Http;
-    using Data.Parameters;
 
     internal sealed class RestApiRequest
     {
@@ -34,8 +34,8 @@
             return $"{baseUri}{_url}{parameter}";
         }
 
-        public HttpRequestMessage BuildRequestMessage(string baseUri
-                                      , ApiTokenCredentials apiTokenCredentials)
+        public HttpRequestMessage AsRequestMessage(string baseUri
+                                                 , ApiTokenCredentials apiTokenCredentials)
         {
             _parameter.Add(apiTokenCredentials.AsParameter());
             var requestUri = RequestUri(baseUri, _parameter);
@@ -43,9 +43,9 @@
             return new HttpRequestMessage(_httpMethod, requestUri);
         }
 
-        public HttpContent BuildContent()
+        public HttpContent AsContent()
         {
-            var values = _parameter.ToKeyValuePairs();
+            var values = _parameter.ToKeyValuePairs().ToArray();
             return new FormUrlEncodedContent(values);
         }
     }

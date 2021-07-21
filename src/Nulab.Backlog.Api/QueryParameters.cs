@@ -13,8 +13,8 @@
         public override string ToString()
         {
             if (_parameters.All(x=> x.value == null)) return string.Empty;
-
-            var parameter = _parameters.Where(Valid).Select(ToValue).ToArray();
+            
+            var parameter = ToKeyValuePairs().Select(x => $"{x.Key}={x.Value}").ToArray();
 
             if (!parameter.Any()) return string.Empty;
 
@@ -23,9 +23,37 @@
 
         public IEnumerable<KeyValuePair<string, string>> ToKeyValuePairs()
         {
-            return _parameters.Where(Valid).Select(x => new KeyValuePair<string, string>(x.key, x.value.ToString()));
-        }
+            var parameters = _parameters.Where(Valid).ToArray();
+            foreach (var (key, value) in parameters)
+            {
+                var type = value.GetType();
 
+                // yield return の仕様で else if がなくなると挙動が変わる。
+                // これはこの形がベスト。
+                if (value is bool)
+                {
+                    yield return new KeyValuePair<string, string>(key, value.ToString().ToLower());
+                }
+                else if (value is DateTime)
+                {
+                    yield return new KeyValuePair<string, string>(key, $"{value:yyyy-MM-dd}");
+                }
+                else if (type.IsArray && type.GetElementType() == typeof(int))
+                {
+                    // 配列の場合は array[0]=1&array[1]=2&array[3]=9 のようにクエリパラメータを指定しなければならない。
+                    var items = (value as int[]).Select((x, i) => new { index = i, value = x }).ToArray();
+                    foreach (var item in items)
+                    {
+                        yield return new KeyValuePair<string, string>($"{key}[{item.index}]", $"{item.value}");
+                    }
+                }
+                else
+                {
+                    yield return new KeyValuePair<string, string>(key, value.ToString());
+                }
+            }
+        }
+        
         private bool Valid((string key, object value) parameter)
         {
             if (parameter.value is null) return false;
@@ -33,22 +61,7 @@
 
             return true;
         }
-
-        private string ToValue((string key, object value) parameter)
-        {
-            var type = parameter.value.GetType();
-
-            if (parameter.value is bool) return $"{parameter.key}={parameter.value.ToString().ToLower()}";
-
-            if (parameter.value is DateTime) return $"{parameter.key}={parameter.value:yyyy-MM-dd}";
-
-            // 配列の場合は array[0]=1&array[1]=2&array[3]=9 のようにクエリパラメータを指定しなければならない。
-            if (type.IsArray && type.GetElementType() == typeof(int))
-                return string.Join(Separator, ((int[]) parameter.value).Select((x, i) => ToValue(($"{parameter.key}[{i}]", x))));
-
-            return $"{parameter.key}={parameter.value}";
-        }
-
+        
         public static QueryParameters Build(string name, object value)
         {
             return new QueryParameters().Add(name, value);

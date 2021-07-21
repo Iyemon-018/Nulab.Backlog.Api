@@ -1,12 +1,10 @@
-﻿using System;
-using System.Net;
-using System.Threading.Tasks;
-using Nulab.Backlog.Api.Data.Parameters;
-using Xunit;
-
-namespace Nulab.Backlog.Api.Tests
+﻿namespace Nulab.Backlog.Api.Tests
 {
-    using Data.Responses;
+    using System;
+    using System.Net;
+    using System.Threading.Tasks;
+    using Data.Parameters;
+    using Xunit;
 
     public partial class ClientTest
     {

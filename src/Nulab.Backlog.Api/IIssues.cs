@@ -37,6 +37,14 @@
         /// </remarks>
         Task<BacklogResponse<Issue>> GetAsync(string issueIdOrKey);
 
+        /// <summary>
+        /// 課題を追加します。
+        /// </summary>
+        /// <param name="parameter">追加する課題の情報</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/add-issue/#
+        /// </remarks>
         Task<BacklogResponse<Issue>> PostAsync(IssueParameter parameter);
 
         /// <summary>

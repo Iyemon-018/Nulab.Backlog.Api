@@ -38,7 +38,7 @@
 
         public async Task<RestApiResponse> SendAsync(RestApiRequest request)
         {
-            var httpRequest = request.BuildRequestMessage(_baseUri, _credentials);
+            var httpRequest = request.AsRequestMessage(_baseUri, _credentials);
             var response    = await _httpClient.SendAsync(httpRequest).ConfigureAwait(false);
 
             return new RestApiResponse(response, _serializer);
@@ -47,7 +47,7 @@
         public async Task<RestApiResponse> PostAsync(RestApiRequest request)
         {
             var requestUri = request.RequestUri(_baseUri, _credentials);
-            var content    = request.BuildContent();
+            var content    = request.AsContent();
             var response   = await _httpClient.PostAsync(requestUri, content).ConfigureAwait(false);
 
             return new RestApiResponse(response, _serializer);
