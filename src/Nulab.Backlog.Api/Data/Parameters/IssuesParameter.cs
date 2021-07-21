@@ -1,6 +1,9 @@
 ﻿namespace Nulab.Backlog.Api.Data.Parameters
 {
     using System;
+    using System.Linq;
+    using System.Reflection;
+    using Responses;
 
     /// <summary>
     /// 
@@ -66,9 +69,12 @@
 
         private int[] versionId;
 
+        private string summary;
+
         QueryParameters IQueryParameter.AsParameter()
         {
             return new QueryParameters().Add(nameof(projectId), projectId)
+                .Add(nameof(summary), summary)
                 .Add(nameof(issueTypeId), issueTypeId)
                 .Add(nameof(categoryId), categoryId)
                 .Add(nameof(versionId), versionId)
@@ -239,5 +245,74 @@
         }
 
         public static IssuesParameter None() => new IssuesParameter();
+    }
+
+    public sealed class IssueParameter : IQueryParameter
+    {
+        private int projectId;
+        private string summary;
+        private int? parentIssueId;
+        private string description;
+        private DateTime? startDate;
+        private DateTime? dueDate;
+        private int? estimatedHours;
+        private int issueTypeId;
+        private int priorityId;
+        private int? actualHours;
+        private int[] categoryId;
+        private int[] versionId;
+        private int[] milestoneId;
+        private int? assigneeId;
+        private int[] notifiedUserId;
+        private int[] attachmentId;
+
+        public IssueParameter(int projectId
+                            , string summary
+                            , int issueTypeId
+                            , int priorityId
+                            , int? parentIssueId = default
+                            , string description = default
+                            , DateTime? startDate = default
+                            , DateTime? dueDate = default
+                            , int? estimatedHours = default
+                            , int? actualHours = default
+                            , int[] categoryId = default
+                            , int[] versionId = default
+                            , int[] milestoneId = default
+                            , int? assigneeId = default
+                            , int[] notifiedUserId = default
+                            , int[] attachmentId = default)
+        {
+            this.projectId      = projectId;
+            this.summary        = summary;
+            this.issueTypeId    = issueTypeId;
+            this.priorityId     = priorityId;
+            this.parentIssueId  = parentIssueId;
+            this.description    = description;
+            this.startDate      = startDate;
+            this.dueDate        = dueDate;
+            this.estimatedHours = estimatedHours;
+            this.actualHours    = actualHours;
+            this.categoryId     = categoryId;
+            this.versionId      = versionId;
+            this.milestoneId    = milestoneId;
+            this.assigneeId     = assigneeId;
+            this.notifiedUserId = notifiedUserId;
+            this.attachmentId   = attachmentId;
+        }
+
+        QueryParameters IQueryParameter.AsParameter()
+        {
+            var values = typeof(IssueParameter).GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+                                               .Select(x => new {key = x.Name, value = x.GetValue(this)})
+                                               .ToArray();
+            var parameter = new QueryParameters();
+            foreach (var value in values)
+            {
+                parameter.Add(value.key, value.value);
+            }
+
+            return parameter;
+        }
     }
 }

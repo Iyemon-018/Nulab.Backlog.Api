@@ -61,6 +61,13 @@
             return await _client.SendAsync(request).ConfigureAwait(false);
         }
 
+        private async Task<RestApiResponse> PostAsync(string url
+                                                    , QueryParameters parameter = null)
+        {
+            var request = new RestApiRequest(url, HttpMethod.Post, parameter);
+            return await _client.PostAsync(request).ConfigureAwait(false);
+        }
+
         private async Task<RestApiResponse> PutAsync(string url, QueryParameters parameter = null)
         {
             var request = new RestApiRequest(url, HttpMethod.Put, parameter);

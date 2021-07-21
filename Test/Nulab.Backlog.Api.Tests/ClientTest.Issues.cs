@@ -6,6 +6,8 @@ using Xunit;
 
 namespace Nulab.Backlog.Api.Tests
 {
+    using Data.Responses;
+
     public partial class ClientTest
     {
         [Fact]
@@ -118,6 +120,21 @@ namespace Nulab.Backlog.Api.Tests
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
+        [Fact]
+        public async Task Test_シナリオ_Issues_PostAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // act
+            var parameter = new IssueParameter(198030, $"テスト課題です<{nameof(Test_シナリオ_Issues_PostAsync)}: {DateTime.Now:yyyy/MM/dd HH:mm:ss}>", 953273, 3);
+            var response  = await client.Issues.PostAsync(parameter).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.Created);
             _outputHelper.WriteLine(response);
         }
 

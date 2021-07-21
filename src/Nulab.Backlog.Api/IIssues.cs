@@ -37,6 +37,8 @@
         /// </remarks>
         Task<BacklogResponse<Issue>> GetAsync(string issueIdOrKey);
 
+        Task<BacklogResponse<Issue>> PostAsync(IssueParameter parameter);
+
         /// <summary>
         /// 課題コメントを取得します。
         /// </summary>

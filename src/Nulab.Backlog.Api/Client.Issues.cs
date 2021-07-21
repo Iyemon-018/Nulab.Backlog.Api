@@ -29,6 +29,13 @@
             return await CreateResponseAsync<Issue>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
 
+        async Task<BacklogResponse<Issue>> IIssues.PostAsync(IssueParameter parameter)
+        {
+            var response = await PostAsync($"/api/v2/issues", parameter.AsParameter()).ConfigureAwait(false);
+
+            return await CreateResponseAsync<Issue>(response, HttpStatusCode.Created).ConfigureAwait(false);
+        }
+
         async Task<BacklogResponse<List<Comment>>> IIssues.GetCommentsAsync(string issueIdOrKey, CommentParameter parameter)
         {
             var response = await GetAsync($"/api/v2/issues/{issueIdOrKey}/comments", parameter).ConfigureAwait(false);

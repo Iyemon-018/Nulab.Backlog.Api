@@ -21,6 +21,11 @@
             return $"?{string.Join(Separator, parameter)}";
         }
 
+        public IEnumerable<KeyValuePair<string, string>> ToKeyValuePairs()
+        {
+            return _parameters.Where(Valid).Select(x => new KeyValuePair<string, string>(x.key, x.value.ToString()));
+        }
+
         private bool Valid((string key, object value) parameter)
         {
             if (parameter.value is null) return false;
@@ -55,9 +60,10 @@
             return this;
         }
 
-        public void Add((string key, object value) parameter)
+        public QueryParameters Add((string key, object value) parameter)
         {
             _parameters.Add(parameter);
+            return this;
         }
     }
 }
