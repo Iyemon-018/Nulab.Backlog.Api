@@ -36,6 +36,21 @@
             return await CreateResponseAsync<Issue>(response, HttpStatusCode.Created).ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// 課題を削除します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/delete-issue/#
+        /// </remarks>
+        async Task<BacklogResponse<Issue>> IIssues.DeleteAsync(string issueIdOrKey)
+        {
+            var response = await DeleteAsync($"/api/v2/issues/{issueIdOrKey}").ConfigureAwait(false);
+
+            return await CreateResponseAsync<Issue>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
+
         async Task<BacklogResponse<List<Comment>>> IIssues.GetCommentsAsync(string issueIdOrKey, CommentParameter parameter)
         {
             var response = await GetAsync($"/api/v2/issues/{issueIdOrKey}/comments", parameter).ConfigureAwait(false);

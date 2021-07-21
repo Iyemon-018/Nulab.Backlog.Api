@@ -48,6 +48,16 @@
         Task<BacklogResponse<Issue>> PostAsync(IssueParameter parameter);
 
         /// <summary>
+        /// 課題を削除します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/delete-issue/#
+        /// </remarks>
+        Task<BacklogResponse<Issue>> DeleteAsync(string issueIdOrKey);
+
+        /// <summary>
         /// 課題コメントを取得します。
         /// </summary>
         /// <param name="issueIdOrKey">課題のID または 課題キー</param>
