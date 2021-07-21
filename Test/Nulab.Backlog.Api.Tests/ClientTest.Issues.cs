@@ -130,12 +130,12 @@
 
             // act
             var parameter = new IssueParameter(198030, $"テスト課題です<{nameof(Test_シナリオ_Issues_作成と更新と削除)}: {DateTime.Now:yyyy/MM/dd HH:mm:ss}>", 953273, 3);
-            var response  = await client.Issues.PostAsync(parameter).ConfigureAwait(false);
+            var response  = await client.Issues.AddAsync(parameter).ConfigureAwait(false);
 
             // assert
             // create
             response.StatusCode.Is(HttpStatusCode.Created);
-            _outputHelper.WriteLine("[PostAsync]");
+            _outputHelper.WriteLine("[AddAsync]");
             _outputHelper.WriteLine(response);
 
             // dispose

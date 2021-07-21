@@ -29,7 +29,7 @@
             return await CreateResponseAsync<Issue>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
 
-        async Task<BacklogResponse<Issue>> IIssues.PostAsync(IssueParameter parameter)
+        async Task<BacklogResponse<Issue>> IIssues.AddAsync(IssueParameter parameter)
         {
             var response = await PostAsync($"/api/v2/issues", parameter.AsParameter()).ConfigureAwait(false);
 

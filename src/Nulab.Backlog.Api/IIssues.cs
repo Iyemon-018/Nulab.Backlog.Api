@@ -45,7 +45,7 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/add-issue/#
         /// </remarks>
-        Task<BacklogResponse<Issue>> PostAsync(IssueParameter parameter);
+        Task<BacklogResponse<Issue>> AddAsync(IssueParameter parameter);
 
         /// <summary>
         /// 課題を削除します。

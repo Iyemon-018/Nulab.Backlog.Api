@@ -131,10 +131,10 @@ Backlog API を呼び出すには`IBacklogClient`を実装した`Client`クラ�
 | [Webhookの削除](https://developer.nulab.com/ja/docs/backlog/api/2/delete-webhook/) | Webhookを削除します。 | DELETE | /api/v2/projects/:projectIdOrKey/webhooks/:webhookId |  |  |
 | [課題一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-issue-list/) | 課題の一覧を取得します。 | GET | /api/v2/issues | ✔ | [IIssues.GetListAsync](./src/Nulab.Backlog.Api/IIssues.cs) |
 | [課題数の取得](https://developer.nulab.com/ja/docs/backlog/api/2/count-issue/) | 課題の数を取得します。 | GET | /api/v2/issues/count | ✔ | [IIssues.GetCountAsync](./src/Nulab.Backlog.Api/IIssues.cs) |
-| [課題の追加](https://developer.nulab.com/ja/docs/backlog/api/2/add-issue/) | 新しい課題を追加します。 | POST | /api/v2/issues |  |  |
+| [課題の追加](https://developer.nulab.com/ja/docs/backlog/api/2/add-issue/) | 新しい課題を追加します。 | POST | /api/v2/issues | ✔ | [IIssues.AddAsync](./src/Nulab.Backlog.Api/IIssues.cs) |
 | [課題情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-issue/) | 課題の情報を取得します。 | GET | /api/v2/issues/:issueIdOrKey | ✔ | [IIssues.GetAsync](./src/Nulab.Backlog.Api/IIssues.cs) |
 | [課題情報の更新](https://developer.nulab.com/ja/docs/backlog/api/2/update-issue/) | 課題の情報を更新します。 | PATCH | /api/v2/issues/:issueIdOrKey |  |  |
-| [課題の削除](https://developer.nulab.com/ja/docs/backlog/api/2/delete-issue/) | 課題を削除します。 | DELETE | /api/v2/issues/:issueIdOrKey |  |  |
+| [課題の削除](https://developer.nulab.com/ja/docs/backlog/api/2/delete-issue/) | 課題を削除します。 | DELETE | /api/v2/issues/:issueIdOrKey | ✔ | [IIssues.DeleteAsync](./src/Nulab.Backlog.Api/IIssues.cs) |
 | [課題コメントの取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-comment-list/) | 課題に登録されているコメントの一覧を取得します。 | GET | /api/v2/issues/:issueIdOrKey/comments | ✔ | [IIssues.GetCommentsAsync](./src/Nulab.Backlog.Api/IIssues.cs) |
 | [課題コメントの追加](https://developer.nulab.com/ja/docs/backlog/api/2/add-comment/) | 課題に新しいコメントを追加します。 | POST | /api/v2/issues/:issueIdOrKey/comments |  |  |
 | [課題コメント数の取得](https://developer.nulab.com/ja/docs/backlog/api/2/count-comment/) | 課題に登録されているコメントの数を取得します。 | GET | /api/v2/issues/:issueIdOrKey/comments/count |  |  |
