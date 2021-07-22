@@ -70,9 +70,9 @@
         }
 
         private async Task<RestApiResponse> PatchAsync(string url
-                                                     , QueryParameters parameter = null)
+                                                     , IQueryParameter parameter = null)
         {
-            var request = new RestApiRequest(url, HttpMethod.Post, parameter);
+            var request = new RestApiRequest(url, HttpMethod.Post, parameter.AsParameter());
             return await _client.PatchAsync(request).ConfigureAwait(false);
         }
 

@@ -56,7 +56,8 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/update-issue/#
         /// </remarks>
-        Task<BacklogResponse<Issue>> UpdateAsync(string issueIdOrKey, UpdateIssueParameter parameter);
+        Task<BacklogResponse<Issue>> UpdateAsync(string issueIdOrKey
+                                               , UpdateIssueParameter parameter);
 
         /// <summary>
         /// 課題を削除します。
@@ -77,7 +78,8 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-comment-list/#
         /// </remarks>
-        Task<BacklogResponse<List<Comment>>> GetCommentsAsync(string issueIdOrKey, CommentParameter parameter = null);
+        Task<BacklogResponse<List<Comment>>> GetCommentsAsync(string issueIdOrKey
+                                                            , CommentParameter parameter = null);
 
         /// <summary>
         /// 課題コメントを追加します。
@@ -110,7 +112,8 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-comment/#
         /// </remarks>
-        Task<BacklogResponse<Comment>> GetCommentAsync(string issueIdOrKey, int commentId);
+        Task<BacklogResponse<Comment>> GetCommentAsync(string issueIdOrKey
+                                                     , int commentId);
 
         /// <summary>
         /// 課題コメントを削除する。
@@ -124,7 +127,18 @@
         Task<BacklogResponse<Comment>> DeleteCommentAsync(string issueIdOrKey
                                                         , int commentId);
 
-        //Task<BacklogResponse<Comment>> UpdateCommentAsync(string issueIdOrKey
-        //                                                , int commentId);
+        /// <summary>
+        /// 課題コメント情報を更新します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <param name="commentId">コメントのID</param>
+        /// <param name="parameter">コメントの更新パラメータ</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/update-comment/#
+        /// </remarks>
+        Task<BacklogResponse<Comment>> UpdateCommentAsync(string issueIdOrKey
+                                                        , int commentId
+                                                        , UpdateIssueCommentParameter parameter);
     }
 }

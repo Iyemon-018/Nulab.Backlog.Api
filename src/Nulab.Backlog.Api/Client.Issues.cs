@@ -48,7 +48,7 @@
         async Task<BacklogResponse<Issue>> IIssues.UpdateAsync(string issueIdOrKey
                                                              , UpdateIssueParameter parameter)
         {
-            var response = await PatchAsync($"/api/v2/issues/{issueIdOrKey}", parameter.AsParameter()).ConfigureAwait(false);
+            var response = await PatchAsync($"/api/v2/issues/{issueIdOrKey}", parameter).ConfigureAwait(false);
 
             return await CreateResponseAsync<Issue>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
@@ -134,6 +134,25 @@
                                                                       , int commentId)
         {
             var response = await DeleteAsync($"/api/v2/issues/{issueIdOrKey}/comments/{commentId}").ConfigureAwait(false);
+
+            return await CreateResponseAsync<Comment>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// 課題コメント情報を更新します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <param name="commentId">コメントのID</param>
+        /// <param name="parameter">コメントの更新パラメータ</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/update-comment/#
+        /// </remarks>
+        async Task<BacklogResponse<Comment>> IIssues.UpdateCommentAsync(string issueIdOrKey
+                                                                      , int commentId
+                                                                      , UpdateIssueCommentParameter parameter)
+        {
+            var response = await PatchAsync($"/api/v2/issues/{issueIdOrKey}/comments/{commentId}", parameter).ConfigureAwait(false);
 
             return await CreateResponseAsync<Comment>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
