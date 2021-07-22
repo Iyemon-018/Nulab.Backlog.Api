@@ -140,5 +140,17 @@
         Task<BacklogResponse<Comment>> UpdateCommentAsync(string issueIdOrKey
                                                         , int commentId
                                                         , UpdateIssueCommentParameter parameter);
+
+        /// <summary>
+        /// 課題コメントのお知らせ一覧を取得します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <param name="commentId">コメントのID</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-comment-notifications/#
+        /// </remarks>
+        Task<BacklogResponse<List<CommentNotification>>> GetCommentNotificationsAsync(string issueIdOrKey
+                                                                                    , int commentId);
     }
 }
