@@ -105,15 +105,24 @@
         /// 課題コメント情報を取得します。
         /// </summary>
         /// <param name="issueIdOrKey">課題のID または 課題キー</param>
-        /// <param name="commendId">コメントのID</param>
+        /// <param name="commentId">コメントのID</param>
         /// <returns></returns>
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-comment/#
         /// </remarks>
-        Task<BacklogResponse<Comment>> GetCommentAsync(string issueIdOrKey, int commendId);
+        Task<BacklogResponse<Comment>> GetCommentAsync(string issueIdOrKey, int commentId);
 
-        //Task<BacklogResponse<Comment>> DeleteCommentAsync(string issueIdOrKey
-        //                                                , int commentId);
+        /// <summary>
+        /// 課題コメントを削除する。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <param name="commentId">コメントのID</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/delete-comment/#
+        /// </remarks>
+        Task<BacklogResponse<Comment>> DeleteCommentAsync(string issueIdOrKey
+                                                        , int commentId);
 
         //Task<BacklogResponse<Comment>> UpdateCommentAsync(string issueIdOrKey
         //                                                , int commentId);

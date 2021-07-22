@@ -120,5 +120,22 @@
 
             return await CreateResponseAsync<Comment>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// 課題コメントを削除する。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <param name="commentId">コメントのID</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/delete-comment/#
+        /// </remarks>
+        async Task<BacklogResponse<Comment>> IIssues.DeleteCommentAsync(string issueIdOrKey
+                                                                      , int commentId)
+        {
+            var response = await DeleteAsync($"/api/v2/issues/{issueIdOrKey}/comments/{commentId}").ConfigureAwait(false);
+
+            return await CreateResponseAsync<Comment>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }

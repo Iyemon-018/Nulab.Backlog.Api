@@ -157,17 +157,29 @@
         }
 
         //[Fact]
-        public async Task Test_シナリオ_Issues_AddCommentAsync()
+        public async Task Test_シナリオ_Issues_Comment_作成と更新と削除()
         {
             // arrange
             var client = TestFactory.CreateClient();
 
             // arrange
-            var parameter = new AddCommentParameter($"`Nulab.Backlog.Api` からコメントを追加しました。<{nameof(Test_シナリオ_Issues_AddCommentAsync)}: {DateTime.Now:yyyy/MM/dd HH:mm:ss}>");
+            // add
+            var parameter = new AddCommentParameter($"`Nulab.Backlog.Api` からコメントを追加しました。<{nameof(Test_シナリオ_Issues_Comment_作成と更新と削除)}: {DateTime.Now:yyyy/MM/dd HH:mm:ss}>");
             var response = await client.Issues.AddCommentAsync("WEBAPITEST-1", parameter).ConfigureAwait(false);
 
             // assert
             response.StatusCode.Is(HttpStatusCode.Created);
+            _outputHelper.WriteLine($"[{nameof(client.Issues.AddCommentAsync)}]");
+            _outputHelper.WriteLine(response);
+
+            // update
+
+
+            // delete
+            response = await client.Issues.DeleteCommentAsync("WEBAPITEST-1", response.Content.id).ConfigureAwait(false);
+
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine($"{Environment.NewLine}[{nameof(client.Issues.DeleteCommentAsync)}]");
             _outputHelper.WriteLine(response);
         }
 
