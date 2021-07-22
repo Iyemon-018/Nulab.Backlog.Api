@@ -8,7 +8,7 @@
     /// <remarks>
     /// GET: https://developer.nulab.com/ja/docs/backlog/api/2/get-issue-list/#%E3%82%AF%E3%82%A8%E3%83%AA%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%83%BC
     /// </remarks>
-    public sealed class IssuesParameter : IQueryParameter
+    public sealed class GetIssuesParameter : IQueryParameter
     {
         private int[] assigneeId;
 
@@ -238,6 +238,6 @@
             this.keyword = keyword;
         }
 
-        public static IssuesParameter None() => new IssuesParameter();
+        public static GetIssuesParameter None() => new GetIssuesParameter();
     }
 }

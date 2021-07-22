@@ -15,7 +15,7 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-issue-list/#
         /// </remarks>
-        Task<BacklogResponse<List<Issue>>> GetListAsync(IssuesParameter parameter);
+        Task<BacklogResponse<List<Issue>>> GetListAsync(GetIssuesParameter parameter);
 
         /// <summary>
         /// 課題数を取得します。
@@ -25,7 +25,7 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/count-issue/#
         /// </remarks>
-        Task<BacklogResponse<IssueCount>> GetCountAsync(IssuesParameter parameter);
+        Task<BacklogResponse<IssueCount>> GetCountAsync(GetIssuesParameter parameter);
 
         /// <summary>
         /// 課題情報を取得します。

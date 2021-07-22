@@ -15,7 +15,7 @@
             var client = TestFactory.CreateClient();
 
             // act
-            var response = await client.Issues.GetListAsync(IssuesParameter.None()).ConfigureAwait(false);
+            var response = await client.Issues.GetListAsync(GetIssuesParameter.None()).ConfigureAwait(false);
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
@@ -27,7 +27,7 @@
         {
             // arrange
             var client = TestFactory.CreateClient();
-            var parameter = new IssuesParameter();
+            var parameter = new GetIssuesParameter();
             parameter.SetProjectId(new[] { 198030 });
             parameter.SetAssigneeId(new[] { 1 });
             parameter.SetAttachement(false);
@@ -71,7 +71,7 @@
             var client = TestFactory.CreateClient();
 
             // act
-            var response = await client.Issues.GetCountAsync(IssuesParameter.None()).ConfigureAwait(false);
+            var response = await client.Issues.GetCountAsync(GetIssuesParameter.None()).ConfigureAwait(false);
 
             // assert
             response.StatusCode.Is(HttpStatusCode.OK);
