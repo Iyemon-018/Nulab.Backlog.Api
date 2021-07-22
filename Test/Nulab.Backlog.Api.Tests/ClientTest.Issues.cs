@@ -156,5 +156,19 @@
             _outputHelper.WriteLine(response);
         }
 
+        [Fact]
+        public async Task Test_シナリオ_Issues_AddCommentAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // arrange
+            var parameter = new AddCommentParameter($"`Nulab.Backlog.Api` からコメントを追加しました。<{nameof(Test_シナリオ_Issues_AddCommentAsync)}: {DateTime.Now:yyyy/MM/dd HH:mm:ss}>");
+            var response = await client.Issues.AddCommentAsync("WEBAPITEST-1", parameter).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.Created);
+            _outputHelper.WriteLine(response);
+        }
     }
 }

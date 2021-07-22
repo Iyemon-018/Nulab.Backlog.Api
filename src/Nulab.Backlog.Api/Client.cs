@@ -62,9 +62,10 @@
         }
 
         private async Task<RestApiResponse> PostAsync(string url
-                                                    , QueryParameters parameter = null)
+                                                    , IQueryParameter queryParameter)
         {
-            var request = new RestApiRequest(url, HttpMethod.Post, parameter);
+            var request = new RestApiRequest(url, HttpMethod.Post, queryParameter.AsParameter());
+
             return await _client.PostAsync(request).ConfigureAwait(false);
         }
 

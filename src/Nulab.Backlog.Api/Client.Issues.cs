@@ -31,7 +31,7 @@
 
         async Task<BacklogResponse<Issue>> IIssues.AddAsync(AddIssueParameter parameter)
         {
-            var response = await PostAsync($"/api/v2/issues", parameter.AsParameter()).ConfigureAwait(false);
+            var response = await PostAsync($"/api/v2/issues", parameter).ConfigureAwait(false);
 
             return await CreateResponseAsync<Issue>(response, HttpStatusCode.Created).ConfigureAwait(false);
         }
@@ -73,6 +73,20 @@
             var response = await GetAsync($"/api/v2/issues/{issueIdOrKey}/comments", parameter).ConfigureAwait(false);
 
             return await CreateResponseAsync<List<Comment>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// 課題コメントを追加します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <param name="parameter">追加するコメントの情報</param>
+        /// <returns></returns>
+        async Task<BacklogResponse<Comment>> IIssues.AddCommentAsync(string issueIdOrKey
+                                                                   , AddCommentParameter parameter)
+        {
+            var response = await PostAsync($"/api/v2/issues/{issueIdOrKey}/comments", parameter).ConfigureAwait(false);
+
+            return await CreateResponseAsync<Comment>(response, HttpStatusCode.Created).ConfigureAwait(false);
         }
     }
 }
