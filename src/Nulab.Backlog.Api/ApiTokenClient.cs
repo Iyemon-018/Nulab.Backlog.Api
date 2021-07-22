@@ -52,5 +52,14 @@
 
             return new RestApiResponse(response, _serializer);
         }
+
+        public async Task<RestApiResponse> PatchAsync(RestApiRequest request)
+        {
+            var requestUri = request.RequestUri(_baseUri, _credentials);
+            var content    = request.AsContent();
+            var response   = await _httpClient.PatchAsync(requestUri, content).ConfigureAwait(false);
+
+            return new RestApiResponse(response, _serializer);
+        }
     }
 }

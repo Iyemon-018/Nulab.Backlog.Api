@@ -37,6 +37,23 @@
         }
 
         /// <summary>
+        /// 課題情報を更新します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <param name="parameter">追加する課題の情報</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/update-issue/#
+        /// </remarks>
+        async Task<BacklogResponse<Issue>> IIssues.UpdateAsync(string issueIdOrKey
+                                                             , UpdateIssueParameter parameter)
+        {
+            var response = await PatchAsync($"/api/v2/issues/{issueIdOrKey}", parameter.AsParameter()).ConfigureAwait(false);
+
+            return await CreateResponseAsync<Issue>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// 課題を削除します。
         /// </summary>
         /// <param name="issueIdOrKey">課題のID または 課題キー</param>

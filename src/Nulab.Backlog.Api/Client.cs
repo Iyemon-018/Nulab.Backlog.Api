@@ -68,6 +68,13 @@
             return await _client.PostAsync(request).ConfigureAwait(false);
         }
 
+        private async Task<RestApiResponse> PatchAsync(string url
+                                                     , QueryParameters parameter = null)
+        {
+            var request = new RestApiRequest(url, HttpMethod.Post, parameter);
+            return await _client.PatchAsync(request).ConfigureAwait(false);
+        }
+
         private async Task<RestApiResponse> DeleteAsync(string url)
         {
             var request = new RestApiRequest(url, HttpMethod.Delete, null);

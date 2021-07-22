@@ -121,7 +121,7 @@
             _outputHelper.WriteLine(response);
         }
 
-        [Fact(Skip = "このテストはローカル開発環境以外では実行したくない。")]
+        //[Fact]
         public async Task Test_シナリオ_Issues_作成と更新と削除()
         {
             // このテストは実行するたびに課題キーがインクリメントされるので頻繁に実行したくない。
@@ -138,8 +138,18 @@
             _outputHelper.WriteLine("[AddAsync]");
             _outputHelper.WriteLine(response);
 
+            var issue = response.Content;
+
+            // update
+            var updateParameter = new UpdateIssueParameter($"テスト課題を更新しました。<{nameof(Test_シナリオ_Issues_作成と更新と削除)}: {DateTime.Now:yyyy/MM/dd HH:mm:ss}>");
+            response = await client.Issues.UpdateAsync(issue.issueKey, updateParameter).ConfigureAwait(false);
+
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine("[UpdateAsync]");
+            _outputHelper.WriteLine(response);
+
             // dispose
-            response = await client.Issues.DeleteAsync(response.Content.issueKey).ConfigureAwait(false);
+            response = await client.Issues.DeleteAsync(issue.issueKey).ConfigureAwait(false);
 
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine("[DeleteAsync]");
