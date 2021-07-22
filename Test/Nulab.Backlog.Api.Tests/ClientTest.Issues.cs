@@ -184,5 +184,20 @@
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
+
+        [Fact]
+        public async Task Test_シナリオ_Issues_GetCommentAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // arrange
+            var response = await client.Issues.GetCommentAsync("WEBAPITEST-1", 87901123).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
     }
 }
