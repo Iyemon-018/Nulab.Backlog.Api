@@ -156,7 +156,7 @@
             _outputHelper.WriteLine(response);
         }
 
-        [Fact]
+        //[Fact]
         public async Task Test_シナリオ_Issues_AddCommentAsync()
         {
             // arrange
@@ -168,6 +168,20 @@
 
             // assert
             response.StatusCode.Is(HttpStatusCode.Created);
+            _outputHelper.WriteLine(response);
+        }
+
+        [Fact]
+        public async Task Test_シナリオ_Issues_GetCommentCountAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // arrange
+            var response = await client.Issues.GetCommentCountAsync("WEBAPITEST-1").ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
     }

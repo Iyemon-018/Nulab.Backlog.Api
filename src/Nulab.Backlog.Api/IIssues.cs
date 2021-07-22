@@ -90,5 +90,15 @@
         /// </remarks>
         Task<BacklogResponse<Comment>> AddCommentAsync(string issueIdOrKey
                                                      , AddCommentParameter parameter);
+
+        /// <summary>
+        /// 課題コメント数を取得します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/count-comment/#
+        /// </remarks>
+        Task<BacklogResponse<CommentCount>> GetCommentCountAsync(string issueIdOrKey);
     }
 }

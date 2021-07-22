@@ -88,5 +88,20 @@
 
             return await CreateResponseAsync<Comment>(response, HttpStatusCode.Created).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// 課題コメント数を取得します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/count-comment/#
+        /// </remarks>
+        async Task<BacklogResponse<CommentCount>> IIssues.GetCommentCountAsync(string issueIdOrKey)
+        {
+            var response = await GetAsync($"/api/v2/issues/{issueIdOrKey}/comments/count").ConfigureAwait(false);
+
+            return await CreateResponseAsync<CommentCount>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }
