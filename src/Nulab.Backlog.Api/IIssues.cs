@@ -160,8 +160,21 @@
         /// <param name="commentId">コメントのID</param>
         /// <param name="parameter">お知らせを追加するためのパラメータ</param>
         /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/add-comment-notification/#url
+        /// </remarks>
         Task<BacklogResponse<CommentNotification>> AddCommentNotificationAsync(string issueIdOrKey
                                                                              , int commentId
                                                                              , AddCommentNotificationParameter parameter);
+
+        /// <summary>
+        /// 課題の参加者一覧を取得します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-issue-participant-list/#
+        /// </remarks>
+        Task<BacklogResponse<List<User>>> GetParticipantsAsync(string issueIdOrKey);
     }
 }

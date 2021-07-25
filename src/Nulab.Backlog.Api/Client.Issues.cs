@@ -189,5 +189,20 @@
 
             return await CreateResponseAsync<CommentNotification>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// 課題の参加者一覧を取得します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-issue-participant-list/#
+        /// </remarks>
+        async Task<BacklogResponse<List<User>>> IIssues.GetParticipantsAsync(string issueIdOrKey)
+        {
+            var response = await GetAsync($"/api/v2/issues/{issueIdOrKey}/participants").ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<User>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }
