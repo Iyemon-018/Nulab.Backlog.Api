@@ -37,11 +37,4 @@
         /// </remarks>
         Task<BacklogResponse<List<WikiPageTag>>> GetTagsAsync(string projectIdOrKey);
     }
-
-    public sealed class WikiPageTag
-    {
-        public int id { get; set; }
-
-        public string name { get; set; }
-    }
 }
