@@ -97,5 +97,7 @@
         public IConfigurations Configurations => this;
 
         public IIssues Issues => this;
+
+        public IWikis Wikis => this;
     }
 }

@@ -11,5 +11,7 @@
         IConfigurations Configurations { get; }
 
         IIssues Issues { get; }
+
+        IWikis Wikis { get; }
     }
 }
