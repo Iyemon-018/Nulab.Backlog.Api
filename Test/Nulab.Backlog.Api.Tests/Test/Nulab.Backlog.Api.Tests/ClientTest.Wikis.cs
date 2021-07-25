@@ -21,5 +21,19 @@
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
+
+        [Fact]
+        public async Task Test_シナリオ_Wikis_GetCountAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // arrange
+            var response = await client.Wikis.GetCountAsync("WEBAPITEST").ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
     }
 }
