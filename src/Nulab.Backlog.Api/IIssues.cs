@@ -152,5 +152,28 @@
         /// </remarks>
         Task<BacklogResponse<List<CommentNotification>>> GetCommentNotificationsAsync(string issueIdOrKey
                                                                                     , int commentId);
+
+        /// <summary>
+        /// 課題コメントにお知らせを追加します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <param name="commentId">コメントのID</param>
+        /// <param name="parameter">お知らせを追加するためのパラメータ</param>
+        /// <returns></returns>
+        Task<BacklogResponse<CommentNotification>> AddCommentNotificationAsync(string issueIdOrKey
+                                                                             , int commentId
+                                                                             , AddCommentNotificationParameter parameter);
+    }
+
+    public sealed class AddCommentNotificationParameter : IQueryParameter
+    {
+        private readonly int[] notifiedUserId;
+
+        public AddCommentNotificationParameter(int[] notifiedUserId)
+        {
+            this.notifiedUserId = notifiedUserId;
+        }
+
+        QueryParameters IQueryParameter.AsParameter() => QueryParameters.Build(nameof(notifiedUserId), notifiedUserId);
     }
 }

@@ -173,5 +173,21 @@
 
             return await CreateResponseAsync<List<CommentNotification>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// 課題コメントにお知らせを追加します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <param name="commentId">コメントのID</param>
+        /// <param name="parameter">お知らせを追加するためのパラメータ</param>
+        /// <returns></returns>
+        async Task<BacklogResponse<CommentNotification>> IIssues.AddCommentNotificationAsync(string issueIdOrKey
+                                                                                           , int commentId
+                                                                                           , AddCommentNotificationParameter parameter)
+        {
+            var response = await PostAsync($"/api/v2/issues/{issueIdOrKey}/comments/{commentId}/notifications", parameter).ConfigureAwait(false);
+
+            return await CreateResponseAsync<CommentNotification>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }

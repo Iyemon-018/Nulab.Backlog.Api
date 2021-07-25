@@ -232,6 +232,22 @@
             _outputHelper.WriteLine(response);
         }
 
+        //[Fact]
+        public async Task Test_シナリオ_Issues_AddCommentNotificationAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // arrange
+            var parameter = new AddCommentNotificationParameter(new []{ 531310 });
+            var response  = await client.Issues.AddCommentNotificationAsync("WEBAPITEST-1", 87901123, parameter).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
+
 
     }
 }
