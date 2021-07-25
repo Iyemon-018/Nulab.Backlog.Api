@@ -204,5 +204,20 @@
 
             return await CreateResponseAsync<List<User>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// 課題共有ファイル一覧を取得します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-linked-shared-files/#
+        /// </remarks>
+        async Task<BacklogResponse<List<SharedFile>>> IIssues.GetSharedFilesAsync(string issueIdOrKey)
+        {
+            var response = await GetAsync($"/api/v2/issues/{issueIdOrKey}/sharedFiles").ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<SharedFile>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }

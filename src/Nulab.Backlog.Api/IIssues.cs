@@ -176,5 +176,15 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-issue-participant-list/#
         /// </remarks>
         Task<BacklogResponse<List<User>>> GetParticipantsAsync(string issueIdOrKey);
+
+        /// <summary>
+        /// 課題共有ファイル一覧を取得します。
+        /// </summary>
+        /// <param name="issueIdOrKey">課題のID または 課題キー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-linked-shared-files/#
+        /// </remarks>
+        Task<BacklogResponse<List<SharedFile>>> GetSharedFilesAsync(string issueIdOrKey);
     }
 }

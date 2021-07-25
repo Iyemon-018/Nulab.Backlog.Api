@@ -261,6 +261,20 @@
             _outputHelper.WriteLine(response);
         }
 
+        [Fact]
+        public async Task Test_シナリオ_Issues_GetSharedFilesAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // arrange
+            var response = await client.Issues.GetSharedFilesAsync("WEBAPITEST-1").ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
 
 
 
