@@ -164,16 +164,4 @@
                                                                              , int commentId
                                                                              , AddCommentNotificationParameter parameter);
     }
-
-    public sealed class AddCommentNotificationParameter : IQueryParameter
-    {
-        private readonly int[] notifiedUserId;
-
-        public AddCommentNotificationParameter(int[] notifiedUserId)
-        {
-            this.notifiedUserId = notifiedUserId;
-        }
-
-        QueryParameters IQueryParameter.AsParameter() => QueryParameters.Build(nameof(notifiedUserId), notifiedUserId);
-    }
 }
