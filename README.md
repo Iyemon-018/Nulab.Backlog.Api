@@ -154,7 +154,7 @@ Backlog API を呼び出すには`IBacklogClient`を実装した`Client`クラ�
 | [Wikiページ数の取得](https://developer.nulab.com/ja/docs/backlog/api/2/count-wiki-page/) | Wikiページの数を取得します。 | GET | /api/v2/wikis/count | ✔ | [IWikis.GetCountAsync](./src/Nulab.Backlog.Api/IWikis.cs) |
 | [Wikiページタグ一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-wiki-page-tag-list/) | プロジェクト内のWikiページで使用されているタグの一覧を取得します。 | GET | /api/v2/wikis/tags | ✔ | [IWikis.GetTagsAsync](./src/Nulab.Backlog.Api/IWikis.cs) |
 | [Wikiページの追加](https://developer.nulab.com/ja/docs/backlog/api/2/add-wiki-page/) | WIkiの新しいページを追加します。 | POST | /api/v2/wikis |  |  |
-| [Wikiページ情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-wiki-page/) | Wikiページの情報を取得します。 | GET | /api/v2/wikis/:wikiId |  |  |
+| [Wikiページ情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-wiki-page/) | Wikiページの情報を取得します。 | GET | /api/v2/wikis/:wikiId | ✔ | [IWikis.GetAsync](./src/Nulab.Backlog.Api/IWikis.cs) |
 | [Wikiページ情報の更新](https://developer.nulab.com/ja/docs/backlog/api/2/update-wiki-page/) | Wikiページの情報を更新します。 | PATCH | /api/v2/wikis/:wikiId |  |  |
 | [Wikiページの削除](https://developer.nulab.com/ja/docs/backlog/api/2/delete-wiki-page/) | WIkiページを削除します。 | DELETE | /api/v2/wikis/:wikiId |  |  |
 | [Wiki添付ファイル一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-wiki-attachments/) | Wikiの添付ファイルの一覧を取得します。 | GET | /api/v2/wikis/:wikiId/attachments |  |  |

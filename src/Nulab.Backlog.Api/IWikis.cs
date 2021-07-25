@@ -36,5 +36,15 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-wiki-page-tag-list/#
         /// </remarks>
         Task<BacklogResponse<List<WikiPageTag>>> GetTagsAsync(string projectIdOrKey);
+
+        /// <summary>
+        /// Wikiページ情報を取得します。
+        /// </summary>
+        /// <param name="wikiId">WikiページのID</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-wiki-page/#
+        /// </remarks>
+        Task<BacklogResponse<WikiPage>> GetAsync(int wikiId);
     }
 }

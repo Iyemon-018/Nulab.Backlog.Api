@@ -54,5 +54,20 @@
 
             return await CreateResponseAsync<List<WikiPageTag>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// Wikiページ情報を取得します。
+        /// </summary>
+        /// <param name="wikiId">WikiページのID</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-wiki-page/#
+        /// </remarks>
+        async Task<BacklogResponse<WikiPage>> IWikis.GetAsync(int wikiId)
+        {
+            var response  = await GetAsync($"/api/v2/wikis/{wikiId}").ConfigureAwait(false);
+
+            return await CreateResponseAsync<WikiPage>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }
