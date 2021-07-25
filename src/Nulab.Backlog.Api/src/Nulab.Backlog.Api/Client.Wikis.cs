@@ -38,5 +38,21 @@
 
             return await CreateResponseAsync<WikiPageCount>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// Wikiページタグ一覧を取得します。
+        /// </summary>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-wiki-page-tag-list/#
+        /// </remarks>
+        async Task<BacklogResponse<List<WikiPageTag>>> IWikis.GetTagsAsync(string projectIdOrKey)
+        {
+            var parameter = QueryParameters.Build(nameof(projectIdOrKey), projectIdOrKey);
+            var response  = await GetAsync($"/api/v2/wikis/tags", parameter).ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<WikiPageTag>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }
