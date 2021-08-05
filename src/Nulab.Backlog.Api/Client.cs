@@ -99,5 +99,7 @@
         public IIssues Issues => this;
 
         public IWikis Wikis => this;
+
+        public INotifications Notifications => this;
     }
 }

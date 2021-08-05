@@ -13,5 +13,7 @@
         IIssues Issues { get; }
 
         IWikis Wikis { get; }
+
+        INotifications Notifications { get; }
     }
 }
