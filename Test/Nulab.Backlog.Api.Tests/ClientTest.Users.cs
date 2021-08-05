@@ -3,6 +3,7 @@
     using System;
     using System.Net;
     using System.Threading.Tasks;
+    using Data.Parameters;
     using Xunit;
 
     public partial class ClientTest
@@ -193,5 +194,22 @@
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
+
+        [Fact]
+        public async Task Test_シナリオ_Users_GetWatchingsAsync()
+        {
+            // arrange
+            var client         = TestFactory.CreateClient();
+            var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+
+            // act
+            var parameter = new GetWatchingsParameter(mySelfResponse.Content.id);
+            var response  = await client.Users.GetWatchingsAsync(parameter).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
     }
 }

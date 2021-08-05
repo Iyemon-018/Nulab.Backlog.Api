@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Data.Parameters;
     using Data.Responses;
 
     public interface IUsers
@@ -49,11 +50,11 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-user-recent-updates/#
         /// </remarks>
         Task<BacklogResponse<List<UserActivity>>> GetActivitiesAsync(int userId
-                                                                    , int[] activityTypeId = null
-                                                                    , int? minId = null
-                                                                    , int? maxId = null
-                                                                    , int? count = null
-                                                                    , string order = null);
+                                                                   , int[] activityTypeId = null
+                                                                   , int? minId = null
+                                                                   , int? maxId = null
+                                                                   , int? count = null
+                                                                   , string order = null);
 
         /// <summary>
         /// ユーザーの受け取ったスター一覧を取得します。
@@ -80,7 +81,9 @@
         /// <param name="since">指定した日付以降のスターをカウント</param>
         /// <param name="until">指定した日付以前のスターをカウント</param>
         /// <returns></returns>
-        Task<BacklogResponse<StarsCount>> GetStarsCountAsync(int userId, DateTime? since = null, DateTime? until = null);
+        Task<BacklogResponse<StarsCount>> GetStarsCountAsync(int userId
+                                                           , DateTime? since = null
+                                                           , DateTime? until = null);
 
         /// <summary>
         /// 自分が最近見た課題一覧を取得します。
@@ -92,7 +95,9 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-issues/#
         /// </remarks>
-        Task<BacklogResponse<List<RecentlyViewedIssue>>> GetRecentlyViewedIssuesAsync(string order = null, int? offset = null, int? count = null);
+        Task<BacklogResponse<List<RecentlyViewedIssue>>> GetRecentlyViewedIssuesAsync(string order = null
+                                                                                    , int? offset = null
+                                                                                    , int? count = null);
 
         /// <summary>
         /// 自分が最近見たプロジェクト一覧を取得します。
@@ -104,7 +109,9 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-projects/#
         /// </remarks>
-        Task<BacklogResponse<List<RecentlyViewedProject>>> GetRecentlyViewedProjectsAsync(string order = null, int? offset = null, int? count = null);
+        Task<BacklogResponse<List<RecentlyViewedProject>>> GetRecentlyViewedProjectsAsync(string order = null
+                                                                                        , int? offset = null
+                                                                                        , int? count = null);
 
         /// <summary>
         /// 自分が最近見たWiki一覧を取得します。
@@ -116,6 +123,17 @@
         /// <remarks>
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-wikis/#
         /// </remarks>
-        Task<BacklogResponse<List<RecentlyViewedWiki>>> GetRecentlyViewedWikisAsync(string order = "", int? offset = null, int? count = null);
+        Task<BacklogResponse<List<RecentlyViewedWiki>>> GetRecentlyViewedWikisAsync(string order = ""
+                                                                                  , int? offset = null
+                                                                                  , int? count = null);
+
+        /// <summary>
+        /// ウォッチ一覧を取得します。
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-watching-list/
+        /// </remarks>
+        Task<BacklogResponse<List<Watching>>> GetWatchingsAsync(GetWatchingsParameter parameter);
     }
 }
