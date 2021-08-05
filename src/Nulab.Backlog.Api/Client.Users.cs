@@ -129,5 +129,20 @@
 
             return await CreateResponseAsync<List<Watching>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// ウォッチ数を取得します。
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/count-watching/#
+        /// </remarks>
+        async Task<BacklogResponse<WatchingCount>> IUsers.GetWatchingCountAsync(GetWatchingCountParameter parameter)
+        {
+            var response = await GetAsync($"/api/v2/users/{parameter.UserId}/watchings/count", parameter).ConfigureAwait(false);
+
+            return await CreateResponseAsync<WatchingCount>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }

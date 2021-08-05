@@ -211,5 +211,21 @@
             _outputHelper.WriteLine(response);
         }
 
+        [Fact]
+        public async Task Test_シナリオ_Users_GetWatchingCountAsync()
+        {
+            // arrange
+            var client         = TestFactory.CreateClient();
+            var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+
+            // act
+            var parameter = new GetWatchingCountParameter(mySelfResponse.Content.id);
+            var response  = await client.Users.GetWatchingCountAsync(parameter).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
     }
 }

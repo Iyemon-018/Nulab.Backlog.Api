@@ -135,5 +135,15 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-watching-list/
         /// </remarks>
         Task<BacklogResponse<List<Watching>>> GetWatchingsAsync(GetWatchingsParameter parameter);
+
+        /// <summary>
+        /// ウォッチ数を取得します。
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/count-watching/#
+        /// </remarks>
+        Task<BacklogResponse<WatchingCount>> GetWatchingCountAsync(GetWatchingCountParameter parameter);
     }
 }
