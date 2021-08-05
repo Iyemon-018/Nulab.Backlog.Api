@@ -145,5 +145,15 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/count-watching/#
         /// </remarks>
         Task<BacklogResponse<WatchingCount>> GetWatchingCountAsync(GetWatchingCountParameter parameter);
+
+        /// <summary>
+        /// ウォッチ情報を取得します。
+        /// </summary>
+        /// <param name="watchingId">ウォッチのID</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-watching/#
+        /// </remarks>
+        Task<BacklogResponse<Watching>> GetWatchingAsync(int watchingId);
     }
 }
