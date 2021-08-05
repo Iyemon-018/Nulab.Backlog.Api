@@ -69,5 +69,20 @@
 
             return await CreateResponseAsync<WikiPage>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// Wikiページ更新履歴一覧を取得します。
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-wiki-page-history/#
+        /// </remarks>
+        async Task<BacklogResponse<List<WikiPageHistory>>> IWikis.GetHistories(GetWikiPageHistoriesParameter parameter)
+        {
+            var response = await GetAsync($"/api/v2/wikis/{parameter.WikiId}/history", parameter).ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<WikiPageHistory>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }

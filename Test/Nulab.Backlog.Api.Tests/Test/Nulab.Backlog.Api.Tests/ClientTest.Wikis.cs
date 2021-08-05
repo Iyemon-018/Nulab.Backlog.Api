@@ -64,5 +64,20 @@
             _outputHelper.WriteLine(response);
         }
 
+        [Fact]
+        public async Task Test_シナリオ_Wikis_GetHistoriesAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // arrange
+            var parameter = new GetWikiPageHistoriesParameter(1240765);
+            var response  = await client.Wikis.GetHistories(parameter).ConfigureAwait(false);
+
+            // assert
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
     }
 }

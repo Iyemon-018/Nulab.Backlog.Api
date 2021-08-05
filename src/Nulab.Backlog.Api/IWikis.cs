@@ -46,5 +46,15 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-wiki-page/#
         /// </remarks>
         Task<BacklogResponse<WikiPage>> GetAsync(int wikiId);
+
+        /// <summary>
+        /// Wikiページ更新履歴一覧を取得します。
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-wiki-page-history/#
+        /// </remarks>
+        Task<BacklogResponse<List<WikiPageHistory>>> GetHistories(GetWikiPageHistoriesParameter parameter);
     }
 }
