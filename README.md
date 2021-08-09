@@ -57,6 +57,10 @@ Backlog API を呼び出すには`IBacklogClient`を実装した`Client`クラ�
 - [IProjects](./src/Nulab.Backlog.Api/IProjects.cs): `/api/v2/projects`関連の Backlog API を呼び出します。
 - [ISpace](./src/Nulab.Backlog.Api/ISpace.cs): `/api/v2/space`関連の Backlog API を呼び出します。
 - [IConfigurations](./src/Nulab.Backlog.Api/IConfigurations.cs): 設定関連の Backlog API を呼び出します。
+- [IIssues](./src/Nulab.Backlog.Api/IIssues.cs): `/api/v2/issues`関連の Backlog API を呼び出します。
+- [IWikis](./src/Nulab.Backlog.Api/IWikis.cs): `/api/v2/wikis`関連の Backlog API を呼び出します。
+- [INotifications](./src/Nulab.Backlog.Api/INotifications.cs): `/api/v2/notifications`関連の Backlog API を呼び出します。
+- [ITeams](./src/Nulab.Backlog.Api/ITeams.cs): `/api/v2/teams`関連の Backlog API を呼び出します。
 
 ## API一覧
 
