@@ -16,6 +16,7 @@
             var response = await client.Configurations.GetPrioritiesAsync().ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -30,6 +31,7 @@
             var response = await client.Configurations.GetResolutionsAsync().ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }

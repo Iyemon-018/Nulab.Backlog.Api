@@ -18,6 +18,7 @@
             var response  = await client.Wikis.GetListAsync(parameter).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -32,6 +33,7 @@
             var response = await client.Wikis.GetCountAsync("WEBAPITEST").ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -46,6 +48,7 @@
             var response = await client.Wikis.GetTagsAsync("WEBAPITEST").ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -60,6 +63,7 @@
             var response = await client.Wikis.GetAsync(1240765).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -75,6 +79,7 @@
             var response  = await client.Wikis.GetHistories(parameter).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }

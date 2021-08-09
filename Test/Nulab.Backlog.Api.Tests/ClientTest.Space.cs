@@ -18,6 +18,7 @@
             var response = await client.Space.GetAsync().ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -32,6 +33,7 @@
             var response = await client.Space.GetActivitiesAsync(new []{1,5,12}).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.AsErrorMessages().ToArray().IsNullOrEmpty();
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
@@ -47,6 +49,7 @@
             var response = await client.Space.GetNotificationAsync().ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -61,6 +64,7 @@
             var response = await client.Space.PutNotificationAsync($"test from <{nameof(Test_シナリオ_Space_PutNotificationAsync)}>.").ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.AsErrorMessages().ToArray().IsNullOrEmpty();
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
@@ -76,6 +80,7 @@
             var response = await client.Space.GetDiskUsageAsync().ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -90,6 +95,7 @@
             var response = await client.Space.GetLicenseAsync().ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }

@@ -18,6 +18,7 @@
             var response = await client.Users.GetListAsync().ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -28,11 +29,13 @@
             // arrange
             var client         = TestFactory.CreateClient();
             var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+            TestFactory.UpdateRateLimiting(mySelfResponse.RateLimiting);
 
             // act
             var response   = await client.Users.GetAsync(mySelfResponse.Content.id).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -47,6 +50,7 @@
             var response = await client.Users.GetMySelfAsync().ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -61,6 +65,7 @@
             var response = await client.Users.GetRecentlyViewedIssuesAsync().ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -71,11 +76,13 @@
             // arrange
             var client = TestFactory.CreateClient();
             var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+            TestFactory.UpdateRateLimiting(mySelfResponse.RateLimiting);
 
             // act
             var response = await client.Users.GetActivitiesAsync(mySelfResponse.Content.id).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -86,6 +93,7 @@
             // arrange
             var client = TestFactory.CreateClient();
             var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+            TestFactory.UpdateRateLimiting(mySelfResponse.RateLimiting);
 
             // act
             var response = await client.Users.GetActivitiesAsync(mySelfResponse.Content.id
@@ -96,6 +104,7 @@
                                                                 , order: "asc").ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -106,11 +115,13 @@
             // arrange
             var client = TestFactory.CreateClient();
             var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+            TestFactory.UpdateRateLimiting(mySelfResponse.RateLimiting);
 
             // act
             var response = await client.Users.GetStarsAsync(mySelfResponse.Content.id).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -121,6 +132,7 @@
             // arrange
             var client = TestFactory.CreateClient();
             var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+            TestFactory.UpdateRateLimiting(mySelfResponse.RateLimiting);
 
             // act
             var response = await client.Users.GetStarsAsync(mySelfResponse.Content.id
@@ -131,6 +143,7 @@
                                                         .ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -141,11 +154,13 @@
             // arrange
             var client = TestFactory.CreateClient();
             var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+            TestFactory.UpdateRateLimiting(mySelfResponse.RateLimiting);
 
             // act
             var response = await client.Users.GetStarsCountAsync(mySelfResponse.Content.id).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -156,6 +171,7 @@
             // arrange
             var client = TestFactory.CreateClient();
             var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+            TestFactory.UpdateRateLimiting(mySelfResponse.RateLimiting);
 
             // act
             var response = await client.Users.GetStarsCountAsync(mySelfResponse.Content.id
@@ -163,6 +179,7 @@
                                                                , new DateTime(2030, 12, 31)).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -177,6 +194,7 @@
             var response = await client.Users.GetRecentlyViewedProjectsAsync().ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -191,6 +209,7 @@
             var response = await client.Users.GetRecentlyViewedWikisAsync().ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -201,12 +220,14 @@
             // arrange
             var client         = TestFactory.CreateClient();
             var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+            TestFactory.UpdateRateLimiting(mySelfResponse.RateLimiting);
 
             // act
             var parameter = new GetWatchingsParameter(mySelfResponse.Content.id);
             var response  = await client.Users.GetWatchingsAsync(parameter).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -217,12 +238,14 @@
             // arrange
             var client         = TestFactory.CreateClient();
             var mySelfResponse = await client.Users.GetMySelfAsync().ConfigureAwait(false);
+            TestFactory.UpdateRateLimiting(mySelfResponse.RateLimiting);
 
             // act
             var parameter = new GetWatchingCountParameter(mySelfResponse.Content.id);
             var response  = await client.Users.GetWatchingCountAsync(parameter).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -237,6 +260,7 @@
             var response = await client.Users.GetWatchingAsync(363658).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }

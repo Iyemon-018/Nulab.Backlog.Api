@@ -2,6 +2,7 @@ namespace Nulab.Backlog.Api.Tests
 {
     using System;
     using System.IO;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
 
     internal static class TestFactory
@@ -38,6 +39,23 @@ namespace Nulab.Backlog.Api.Tests
             _client.AddCredentials(new ApiTokenCredentials(data.apiKey));
 
             return _client;
+        }
+
+        private static RateLimiting _rateLimiting;
+
+        public static void UpdateRateLimiting(RateLimiting rateLimiting) => _rateLimiting = rateLimiting;
+
+        public static async Task Delay()
+        {
+            if (_rateLimiting is {CanSendRequest: false})
+            {
+                var delay = (_rateLimiting.Reset - DateTime.Now).Add(TimeSpan.FromSeconds(5));
+                await Task.Delay(delay);
+            }
+            else
+            {
+                await Task.Delay(TimeSpan.FromSeconds(1));
+            }
         }
     }
 }

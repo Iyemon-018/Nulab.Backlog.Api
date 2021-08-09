@@ -16,6 +16,7 @@ namespace Nulab.Backlog.Api.Tests
         public ClientTest(ITestOutputHelper outputHelper)
         {
             _outputHelper = outputHelper;
+            TestFactory.Delay().Wait(TimeSpan.FromSeconds(60));
         }
 
         [Fact]
@@ -29,6 +30,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetUsersAsync(data.projectKey).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -43,6 +45,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetListAsync().ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -57,6 +60,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetListAsync(archived: true).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -71,6 +75,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetListAsync(archived: false).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -85,6 +90,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetListAsync(all: true).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -100,6 +106,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetStatuesAsync(data.projectKey).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -115,6 +122,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetAsync(data.projectKey).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -130,6 +138,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetAdministratorsAsync(data.projectKey).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -145,6 +154,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetIssueTypesAsync(data.projectKey).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -160,6 +170,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetCategoriesAsync(data.projectKey).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -175,6 +186,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetVersionsAsync(data.projectKey).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -190,6 +202,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetCustomFieldsAsync(data.projectKey).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -205,6 +218,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetFilesAsync(data.projectKey, "test/workspaces").ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -220,6 +234,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetFileContentAsync(data.projectKey, 12052295).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -231,12 +246,14 @@ namespace Nulab.Backlog.Api.Tests
             var client = TestFactory.CreateClient();
             var data = TestFactory.Load();
             var response = await client.Projects.GetFileContentAsync(data.projectKey, 12050703).ConfigureAwait(false);
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
 
             // act
             string fileName = null;
             var ex = Record.Exception(() => fileName = response.Content.DownloadAsync(Path.Combine(Environment.CurrentDirectory, "Downloads")).Result);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             ex.IsNull();
             _outputHelper.WriteLine(fileName);
             _outputHelper.WriteLine(":Content -----------------------");
@@ -254,6 +271,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetDiskUsageAsync(data.projectKey).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -269,6 +287,7 @@ namespace Nulab.Backlog.Api.Tests
             var response = await client.Projects.GetWebHooksAsync(data.projectKey).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }

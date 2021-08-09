@@ -18,6 +18,7 @@
             var response = await client.Issues.GetListAsync(GetIssuesParameter.None()).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -59,6 +60,7 @@
             var response = await client.Issues.GetListAsync(parameter).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             
             _outputHelper.WriteLine(response);
@@ -74,6 +76,7 @@
             var response = await client.Issues.GetCountAsync(GetIssuesParameter.None()).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -88,6 +91,7 @@
             var response = await client.Issues.GetAsync("WEBAPITEST-1").ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -102,6 +106,7 @@
             var response = await client.Issues.GetCommentsAsync("WEBAPITEST-1").ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -117,6 +122,7 @@
             var response = await client.Issues.GetCommentsAsync("WEBAPITEST-1", parameter).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -133,6 +139,7 @@
             var response  = await client.Issues.AddAsync(parameter).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             // create
             response.StatusCode.Is(HttpStatusCode.Created);
             _outputHelper.WriteLine("[AddAsync]");
@@ -168,6 +175,7 @@
             var response = await client.Issues.AddCommentAsync("WEBAPITEST-1", parameter).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.Created);
             _outputHelper.WriteLine($"[{nameof(client.Issues.AddCommentAsync)}]");
             _outputHelper.WriteLine(response);
@@ -200,6 +208,7 @@
             var response = await client.Issues.GetCommentCountAsync("WEBAPITEST-1").ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -214,6 +223,7 @@
             var response = await client.Issues.GetCommentAsync("WEBAPITEST-1", 87901123).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -228,6 +238,7 @@
             var response = await client.Issues.GetCommentNotificationsAsync("WEBAPITEST-1", 89623485).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -243,6 +254,7 @@
             var response  = await client.Issues.AddCommentNotificationAsync("WEBAPITEST-1", 87901123, parameter).ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -257,6 +269,7 @@
             var response = await client.Issues.GetParticipantsAsync("WEBAPITEST-1").ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
@@ -271,6 +284,7 @@
             var response = await client.Issues.GetSharedFilesAsync("WEBAPITEST-1").ConfigureAwait(false);
 
             // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
             response.StatusCode.Is(HttpStatusCode.OK);
             _outputHelper.WriteLine(response);
         }
