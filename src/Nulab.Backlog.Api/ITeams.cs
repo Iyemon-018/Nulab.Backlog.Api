@@ -16,5 +16,15 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-teams/#
         /// </remarks>
         Task<BacklogResponse<List<Team>>> GetListAsync(GetTeamsParameter parameter);
+
+        /// <summary>
+        /// チーム情報を取得します。
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-team/#
+        /// </remarks>
+        Task<BacklogResponse<Team>> GetAsync(int teamId);
     }
 }

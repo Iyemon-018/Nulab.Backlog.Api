@@ -195,7 +195,7 @@ Backlog API を呼び出すには`IBacklogClient`を実装した`Client`クラ�
 | [ライセンス情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-licence/) | ライセンスの情報を取得します。 | GET | /api/v2/space/licence | ✔ | [ISpace.GetLicenseAsync](./src/Nulab.Backlog.Api/ISpace.cs) |
 | [チーム一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-teams/) | チームの一覧を取得します。 | GET | /api/v2/teams | ✔ | [ITeams.GetListAsync](./src/Nulab.Backlog.Api/ITeams.cs) |
 | [チームの追加](https://developer.nulab.com/ja/docs/backlog/api/2/add-team/) | チームを追加します。新プランのスペースではこのAPIを利用できません。 | POST | /api/v2/teams |  |  |
-| [チーム情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-team/) | チームの情報を取得します。 | GET | /api/v2/teams/:teamId |  |  |
+| [チーム情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-team/) | チームの情報を取得します。 | GET | /api/v2/teams/:teamId | ✔ | [ITeams.GetAsync](./src/Nulab.Backlog.Api/ITeams.cs) |
 | [チーム情報の更新](https://developer.nulab.com/ja/docs/backlog/api/2/update-team/) | チームの情報を更新します。新プランのスペースではこのAPIを利用できません。 | PATCH | /api/v2/teams/:teamId |  |  |
 | [チームの削除](https://developer.nulab.com/ja/docs/backlog/api/2/delete-team/) | チームを削除します。新プランのスペースではこのAPIを利用できません。 | DELETE | /api/v2/teams/:teamId |  |  |
 | [チームアイコンの取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-team-icon/) | チームアイコン画像を取得します。 | GET | /api/v2/teams/:teamId/icon |  |  |
