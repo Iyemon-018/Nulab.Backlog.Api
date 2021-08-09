@@ -292,5 +292,21 @@ namespace Nulab.Backlog.Api.Tests
             _outputHelper.WriteLine(response);
         }
 
+        [Fact]
+        public async Task Test_シナリオ_Projects_GetTeamsAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+            var data   = TestFactory.Load();
+
+            // act
+            var response = await client.Projects.GetTeamsAsync(data.projectKey).ConfigureAwait(false);
+
+            // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
     }
 }

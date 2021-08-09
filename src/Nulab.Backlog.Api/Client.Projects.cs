@@ -110,5 +110,20 @@
 
             return await CreateResponseAsync<List<Webhook>>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// プロジェクトチーム一覧を取得します。
+        /// </summary>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-project-team-list/#
+        /// </remarks>
+        async Task<BacklogResponse<List<Team>>> IProjects.GetTeamsAsync(string projectIdOrKey)
+        {
+            var response = await GetAsync($"/api/v2/projects/{projectIdOrKey}/teams").ConfigureAwait(false);
+
+            return await CreateResponseAsync<List<Team>>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }
