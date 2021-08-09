@@ -15,5 +15,7 @@
         IWikis Wikis { get; }
 
         INotifications Notifications { get; }
+
+        ITeams Teams { get; }
     }
 }

@@ -101,5 +101,7 @@
         public IWikis Wikis => this;
 
         public INotifications Notifications => this;
+
+        public ITeams Teams => this;
     }
 }
