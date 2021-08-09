@@ -85,5 +85,19 @@
 
             return await CreateResponseAsync<DiskUsage>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// ライセンス情報を取得します。
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-licence/#
+        /// </remarks>
+        async Task<BacklogResponse<License>> ISpace.GetLicenseAsync()
+        {
+            var response = await GetAsync($"/api/v2/space/licence").ConfigureAwait(false);
+
+            return await CreateResponseAsync<License>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }

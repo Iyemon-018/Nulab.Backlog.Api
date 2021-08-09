@@ -60,5 +60,14 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-space-disk-usage/#
         /// </remarks>
         Task<BacklogResponse<DiskUsage>> GetDiskUsageAsync();
+
+        /// <summary>
+        /// ライセンス情報を取得します。
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-licence/#
+        /// </remarks>
+        Task<BacklogResponse<License>> GetLicenseAsync();
     }
 }
