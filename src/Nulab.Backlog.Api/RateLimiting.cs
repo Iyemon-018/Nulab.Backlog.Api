@@ -1,7 +1,7 @@
 ﻿namespace Nulab.Backlog.Api
 {
     using System;
-
+    
     /// <summary>
     /// 
     /// </summary>

@@ -159,5 +159,19 @@
 
             return await CreateResponseAsync<Watching>(response, HttpStatusCode.OK).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// レート制限情報を取得します。
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-rate-limit/#
+        /// </remarks>
+        async Task<BacklogResponse<Data.Responses.RateLimiting>> IUsers.GetRateLimitAsync()
+        {
+            var response = await GetAsync($"/api/v2/rateLimit").ConfigureAwait(false);
+
+            return await CreateResponseAsync<Data.Responses.RateLimiting>(response, HttpStatusCode.OK).ConfigureAwait(false);
+        }
     }
 }

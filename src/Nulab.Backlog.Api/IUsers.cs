@@ -155,5 +155,14 @@
         /// https://developer.nulab.com/ja/docs/backlog/api/2/get-watching/#
         /// </remarks>
         Task<BacklogResponse<Watching>> GetWatchingAsync(int watchingId);
+
+        /// <summary>
+        /// レート制限情報を取得します。
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>
+        /// https://developer.nulab.com/ja/docs/backlog/api/2/get-rate-limit/#
+        /// </remarks>
+        Task<BacklogResponse<Data.Responses.RateLimiting>> GetRateLimitAsync();
     }
 }

@@ -265,5 +265,20 @@
             _outputHelper.WriteLine(response);
         }
 
+        [Fact]
+        public async Task Test_シナリオ_Users_GetRateLimitAsync()
+        {
+            // arrange
+            var client = TestFactory.CreateClient();
+
+            // act
+            var response = await client.Users.GetRateLimitAsync().ConfigureAwait(false);
+
+            // assert
+            TestFactory.UpdateRateLimiting(response.RateLimiting);
+            response.StatusCode.Is(HttpStatusCode.OK);
+            _outputHelper.WriteLine(response);
+        }
+
     }
 }
