@@ -27,34 +27,32 @@
         public async Task Test_シナリオ_Issues_GetListAsync_パラメータ指定()
         {
             // arrange
-            var client = TestFactory.CreateClient();
-            var parameter = new GetIssuesParameter();
-            parameter.SetProjectId(new[] { 198030 });
-            parameter.SetAssigneeId(new[] { 1 });
-            parameter.SetAttachement(false);
-            parameter.SetCategoryId(new[] { 1 });
-            parameter.SetCount(100);
-            parameter.SetCreatedSince(DateTime.Today);
-            parameter.SetCreatedUntil(DateTime.Today);
-            parameter.SetCreatedUserId(new[] { 1 });
-            parameter.SetDueDateSince(DateTime.Today);
-            parameter.SetDueDateUntil(DateTime.Today);
-            parameter.SetId(new[] { 1 });
-            parameter.SetIssueTypeId(new[] { 1 });
-            parameter.SetKeyword("test");
-            parameter.SetMilestoneId(new[] { 1 });
-            parameter.SetOffset(0);
-            parameter.SetParentChild(ParentChildCondition.All);
-            parameter.SetVersionId(new[] { 1 });
-            parameter.SetUpdatedUntil(DateTime.Today);
-            parameter.SetUpdatedSince(DateTime.Today);
-            parameter.SetStatusId(new[] { 1 });
-            parameter.SetStartDateUntil(DateTime.Today);
-            parameter.SetStartDateSince(DateTime.Today);
-            parameter.SetSort("issueType");
-            parameter.SetOrder(OrderType.Asc);
-            parameter.SetSharedFile(false);
-            parameter.SetResolutionId(new[] { 1 });
+            var client    = TestFactory.CreateClient();
+            var parameter = new GetIssuesParameter(projectId: new[] {198030}
+                                                 , assigneeId: new[] {1}
+                                                 , attachment: false
+                                                 , categoryId: new[] {1}
+                                                 , count: 100
+                                                 , createdSince: DateTime.Today
+                                                 , createdUntil: DateTime.Today
+                                                 , createdUserId: new[] {1}
+                                                 , dueDateSince: DateTime.Today
+                                                 , dueDateUntil: DateTime.Today
+                                                 , id: new[] {1}
+                                                 , issueTypeId: new[] {1}
+                                                 , keyword: "test"
+                                                 , milestoneId: new[] {1}
+                                                 , offset: 0
+                                                 , parentChild: ParentChildCondition.All
+                                                 , versionId: new[] {1}, updatedSince: DateTime.Today
+                                                 , updatedUntil: DateTime.Today
+                                                 , statusId: new[] {1}
+                                                 , startDateUntil: DateTime.Today
+                                                 , startDateSince: DateTime.Today
+                                                 , sort: "issueType"
+                                                 , order: OrderType.Asc
+                                                 , sharedFile: false
+                                                 , resolutionId: new[] {1});
 
             // act
             var response = await client.Issues.GetListAsync(parameter).ConfigureAwait(false);

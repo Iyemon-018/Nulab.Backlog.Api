@@ -7,6 +7,7 @@
     /// </summary>
     /// <remarks>
     /// GET: https://developer.nulab.com/ja/docs/backlog/api/2/get-issue-list/#%E3%82%AF%E3%82%A8%E3%83%AA%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%83%BC
+    /// 必須パラメータ: なし
     /// </remarks>
     public sealed class GetIssuesParameter : IQueryParameter
     {
@@ -65,7 +66,67 @@
         private DateTime? updatedUntil;
 
         private int[] versionId;
-        
+
+        /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+        public GetIssuesParameter(int[] assigneeId = null
+                                , bool? attachment = default
+                                , int[] categoryId = null
+                                , int? count = default
+                                , DateTime? createdSince = default
+                                , DateTime? createdUntil = default
+                                , int[] createdUserId = null
+                                , DateTime? dueDateSince = default
+                                , DateTime? dueDateUntil = default
+                                , int[] id = null
+                                , int[] issueTypeId = null
+                                , string keyword = null
+                                , int[] milestoneId = null
+                                , int? offset = default
+                                , OrderType? order = default
+                                , ParentChildCondition? parentChild = default
+                                , int[] parentIssueId = null
+                                , int[] priorityId = null
+                                , int[] projectId = null
+                                , int[] resolutionId = null
+                                , bool? sharedFile = default
+                                , string sort = null
+                                , DateTime? startDateSince = default
+                                , DateTime? startDateUntil = default
+                                , int[] statusId = null
+                                , DateTime? updatedSince = default
+                                , DateTime? updatedUntil = default
+                                , int[] versionId = null)
+        {
+            this.assigneeId     = assigneeId;
+            this.attachment     = attachment;
+            this.categoryId     = categoryId;
+            this.count          = count;
+            this.createdSince   = createdSince;
+            this.createdUntil   = createdUntil;
+            this.createdUserId  = createdUserId;
+            this.dueDateSince   = dueDateSince;
+            this.dueDateUntil   = dueDateUntil;
+            this.id             = id;
+            this.issueTypeId    = issueTypeId;
+            this.keyword        = keyword;
+            this.milestoneId    = milestoneId;
+            this.offset         = offset;
+            this.order          = order;
+            this.parentChild    = parentChild;
+            this.parentIssueId  = parentIssueId;
+            this.priorityId     = priorityId;
+            this.projectId      = projectId;
+            this.resolutionId   = resolutionId;
+            this.sharedFile     = sharedFile;
+            this.sort           = sort;
+            this.startDateSince = startDateSince;
+            this.startDateUntil = startDateUntil;
+            this.statusId       = statusId;
+            this.updatedSince   = updatedSince;
+            this.updatedUntil   = updatedUntil;
+            this.versionId      = versionId;
+        }
+
         QueryParameters IQueryParameter.AsParameter()
         {
             return new QueryParameters().Add(nameof(projectId), projectId)
@@ -97,147 +158,7 @@
                 .Add(nameof(parentIssueId), parentIssueId)
                 .Add(nameof(keyword), keyword);
         }
-
-        public void SetProjectId(int[] projectId)
-        {
-            this.projectId = projectId;
-        }
-
-        public void SetIssueTypeId(int[] issueTypeId)
-        {
-            this.issueTypeId = issueTypeId;
-        }
-
-        public void SetCategoryId(int[] categoryId)
-        {
-            this.categoryId = categoryId;
-        }
-
-        public void SetVersionId(int[] versionId)
-        {
-            this.versionId = versionId;
-        }
-
-        public void SetMilestoneId(int[] milestoneId)
-        {
-            this.milestoneId = milestoneId;
-        }
-
-        public void SetStatusId(int[] statusId)
-        {
-            this.statusId = statusId;
-        }
-
-        public void SetPriorityId(int[] priorityId)
-        {
-            this.priorityId = priorityId;
-        }
-
-        public void SetAssigneeId(int[] assigneeId)
-        {
-            this.assigneeId = assigneeId;
-        }
-
-        public void SetCreatedUserId(int[] createdUserId)
-        {
-            this.createdUserId = createdUserId;
-        }
-
-        public void SetResolutionId(int[] resolutionId)
-        {
-            this.resolutionId = resolutionId;
-        }
-
-        public void SetParentChild(ParentChildCondition parentChild)
-        {
-            this.parentChild = parentChild;
-        }
-
-        public void SetAttachement(bool attachement)
-        {
-            attachment = attachement;
-        }
-
-        public void SetSharedFile(bool sharedFile)
-        {
-            this.sharedFile = sharedFile;
-        }
-
-        public void SetSort(string sort)
-        {
-            this.sort = sort;
-        }
-
-        public void SetOrder(OrderType order)
-        {
-            this.order = order;
-        }
-
-        public void SetOffset(int offset)
-        {
-            this.offset = offset;
-        }
-
-        public void SetCount(int count)
-        {
-            this.count = count;
-        }
-
-        public void SetCreatedSince(DateTime createdSince)
-        {
-            this.createdSince = createdSince;
-        }
-
-        public void SetCreatedUntil(DateTime createdUntil)
-        {
-            this.createdUntil = createdUntil;
-        }
-
-        public void SetUpdatedSince(DateTime updatedSince)
-        {
-            this.updatedSince = updatedSince;
-        }
-
-        public void SetUpdatedUntil(DateTime updatedUntil)
-        {
-            this.updatedUntil = updatedUntil;
-        }
-
-        public void SetStartDateSince(DateTime startDateSince)
-        {
-            this.startDateSince = startDateSince;
-        }
-
-        public void SetStartDateUntil(DateTime startDateUntil)
-        {
-            this.startDateUntil = startDateUntil;
-        }
-
-        public void SetDueDateSince(DateTime dueDateSince)
-        {
-            this.dueDateSince = dueDateSince;
-        }
-
-        public void SetDueDateUntil(DateTime dueDateUntil)
-        {
-            this.dueDateUntil = dueDateUntil;
-        }
-
-        public void SetId(int[] id)
-        {
-            this.id = id;
-        }
-
-        public void SetParentIssueId(int[] parentIssueId)
-        {
-            this.parentIssueId = parentIssueId;
-        }
-
-        public void SetKeyword(string keyword)
-        {
-            this.keyword = keyword;
-        }
-
+        
         public static GetIssuesParameter None() => new GetIssuesParameter();
     }
 }

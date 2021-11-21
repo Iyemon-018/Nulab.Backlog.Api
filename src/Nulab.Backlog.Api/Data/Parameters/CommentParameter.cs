@@ -10,18 +10,21 @@
 
         private OrderType? order;
 
-        public CommentParameter(int? minId = default, int? maxId = default, int? count = default, OrderType? order = default)
+        public CommentParameter(int? minId = default
+                              , int? maxId = default
+                              , int? count = default
+                              , OrderType? order = default)
         {
             this.minId = minId;
             this.maxId = maxId;
             this.count = count;
             this.order = order;
         }
-        
+
         QueryParameters IQueryParameter.AsParameter()
             => new QueryParameters().Add(nameof(minId), minId)
-                .Add(nameof(maxId), maxId)
-                .Add(nameof(count), count)
-                .Add(nameof(order), EnumValueCache<OrderType>.GetString(order));
+                                    .Add(nameof(maxId), maxId)
+                                    .Add(nameof(count), count)
+                                    .Add(nameof(order), EnumValueCache<OrderType>.GetString(order));
     }
 }

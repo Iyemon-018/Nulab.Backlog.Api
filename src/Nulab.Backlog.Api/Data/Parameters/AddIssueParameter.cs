@@ -43,21 +43,21 @@
         private int[] attachmentId;
 
         public AddIssueParameter(int projectId
-                            , string summary
-                            , int issueTypeId
-                            , int priorityId
-                            , int? parentIssueId = default
-                            , string description = default
-                            , DateTime? startDate = default
-                            , DateTime? dueDate = default
-                            , int? estimatedHours = default
-                            , int? actualHours = default
-                            , int[] categoryId = default
-                            , int[] versionId = default
-                            , int[] milestoneId = default
-                            , int? assigneeId = default
-                            , int[] notifiedUserId = default
-                            , int[] attachmentId = default)
+                               , string summary
+                               , int issueTypeId
+                               , int priorityId
+                               , int? parentIssueId = default
+                               , string description = default
+                               , DateTime? startDate = default
+                               , DateTime? dueDate = default
+                               , int? estimatedHours = default
+                               , int? actualHours = default
+                               , int[] categoryId = default
+                               , int[] versionId = default
+                               , int[] milestoneId = default
+                               , int? assigneeId = default
+                               , int[] notifiedUserId = default
+                               , int[] attachmentId = default)
         {
             this.projectId      = projectId;
             this.summary        = summary;
