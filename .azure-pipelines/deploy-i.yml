@@ -1,0 +1,53 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool:
+  vmImage: windows-latest
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@1
+  displayName: 'NuGet tool installer'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore from .sln'
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: UseDotNet@2
+  displayName: 'Use .NET 3.1.x'
+  inputs:
+    packageType: 'sdk'
+    version: '3.1.x'
+
+- task: DotNetCoreCLI@2
+  displayName: '.NET build $(buildConfiguration)'
+  inputs:
+    command: 'build'
+    projects: 'src/**/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: pack Nulab.Backlog.Api.csproj
+  inputs:
+    command: 'pack'
+    packagesToPack: 'src/Nulab.Backlog.Api/Nulab.Backlog.Api.csproj'
+    nobuild: true
+    versioningScheme: 'off'
+
+- task: NuGetCommand@2
+  displayName: publish Nulab.Backlog.API for Artifact
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'd283a287-5165-4a98-a765-e793e4f6040c'
+    allowPackageConflicts: true
