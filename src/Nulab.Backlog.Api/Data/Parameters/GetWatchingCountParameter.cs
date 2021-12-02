@@ -5,10 +5,12 @@
         private readonly int _userId;
 
         private readonly bool? resourceAlreadyRead;
-        
+
         private readonly bool? alreadyRead;
 
-        public GetWatchingCountParameter(int userId, bool? resourceAlreadyRead = default, bool? alreadyRead = default)
+        public GetWatchingCountParameter(int userId
+                                       , bool? resourceAlreadyRead = default
+                                       , bool? alreadyRead = default)
         {
             _userId                  = userId;
             this.resourceAlreadyRead = resourceAlreadyRead;
