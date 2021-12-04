@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class SharedFile
+    public sealed class SharedFile
     {
         public int id { get; set; }
         

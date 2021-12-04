@@ -1,6 +1,6 @@
 ﻿namespace Nulab.Backlog.Api.Data.Responses
 {
-    public class IssueType
+    public sealed class IssueType
     {
         public int id { get; set; }
 

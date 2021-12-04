@@ -1,6 +1,6 @@
 ﻿namespace Nulab.Backlog.Api.Data.Responses
 {
-    public class DiskUsageDetail
+    public sealed class DiskUsageDetail
     {
         public int projectId { get; set; }
 

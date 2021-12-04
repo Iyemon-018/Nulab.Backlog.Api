@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class WikiPage
+    public sealed class WikiPage
     {
         public int id { get; set; }
     

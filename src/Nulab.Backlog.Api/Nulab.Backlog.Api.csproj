@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>1.0.1</Version>
+    <Authors>MOTEX Inc.</Authors>
+    <Product>Nulab Backlog Api</Product>
+    <Description>Nulab 社の Backlog API を使用するためのクライアントライブラリです。</Description>
+    <PackageTags>Nulab Backlog</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

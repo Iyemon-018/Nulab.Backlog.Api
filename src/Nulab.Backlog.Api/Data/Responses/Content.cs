@@ -1,6 +1,6 @@
 ﻿namespace Nulab.Backlog.Api.Data.Responses
 {
-    public class Content
+    public sealed class Content
     {
         public int id { get; set; }
 

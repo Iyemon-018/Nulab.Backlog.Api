@@ -1,6 +1,6 @@
 ﻿namespace Nulab.Backlog.Api.Data.Responses
 {
-    public class Assignee
+    public sealed class Assignee
     {
         public int id { get; set; }
 

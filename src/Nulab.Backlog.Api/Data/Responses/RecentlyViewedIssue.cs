@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class RecentlyViewedIssue
+    public sealed class RecentlyViewedIssue
     {
         public Issue issue { get; set; }
 

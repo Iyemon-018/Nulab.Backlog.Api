@@ -9,7 +9,7 @@
     /// <remarks>
     /// https://developer.nulab.com/ja/docs/backlog/error-response/#
     /// </remarks>
-    public class Errors
+    public sealed class Errors
     {
         public Error[] errors { get; set; }
 

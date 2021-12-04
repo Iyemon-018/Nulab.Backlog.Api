@@ -1,6 +1,6 @@
 ﻿namespace Nulab.Backlog.Api.Data.Responses
 {
-    public class Priority
+    public sealed class Priority
     {
         public int id { get; set; }
 

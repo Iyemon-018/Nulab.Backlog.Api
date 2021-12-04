@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class RecentlyViewedWiki
+    public sealed class RecentlyViewedWiki
     {
         public WikiPage page { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Nulab.Backlog.Api.Data.Responses
 {
-    public class ProjectStatus
+    public sealed class ProjectStatus
     {
         public int id { get; set; }
 

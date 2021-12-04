@@ -1,6 +1,6 @@
 ﻿namespace Nulab.Backlog.Api.Data.Responses
 {
-    public class StarsCount
+    public sealed class StarsCount
     {
         public int count { get; set; }
     }

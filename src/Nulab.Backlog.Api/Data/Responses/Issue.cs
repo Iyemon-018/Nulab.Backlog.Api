@@ -2,60 +2,63 @@
 {
     using System;
 
-    public class Issue
+    public sealed class Issue
     {
         public int id { get; set; }
-        
+
         public int projectId { get; set; }
-        
+
         public string issueKey { get; set; }
-        
+
         public int keyId { get; set; }
-        
+
         public IssueType issueType { get; set; }
-        
+
         public string summary { get; set; }
-        
+
         public string description { get; set; }
-        
-        public object resolution { get; set; }
-        
+
+        /// <summary>
+        /// 完了理由を設定、または取得します。
+        /// </summary>
+        public Resolution[] resolutions { get; set; }
+
         public Priority priority { get; set; }
-        
+
         public Status status { get; set; }
-        
+
         public Assignee assignee { get; set; }
-        
+
         public Category[] category { get; set; }
-        
-        public object[] versions { get; set; }
-        
-        public object[] milestone { get; set; }
-        
+
+        public ProjectVersion[] versions { get; set; }
+
+        public Milestone[] milestone { get; set; }
+
         public DateTime? startDate { get; set; }
-        
+
         public DateTime? dueDate { get; set; }
-        
-        public object estimatedHours { get; set; }
-        
-        public object actualHours { get; set; }
-        
+
+        public int? estimatedHours { get; set; }
+
+        public int? actualHours { get; set; }
+
         public int? parentIssueId { get; set; }
-        
+
         public User createdUser { get; set; }
-        
+
         public DateTime created { get; set; }
-        
+
         public User updatedUser { get; set; }
-        
+
         public DateTime updated { get; set; }
-        
-        public object[] customFields { get; set; }
-        
-        public object[] attachments { get; set; }
-        
-        public object[] sharedFiles { get; set; }
-        
-        public object[] stars { get; set; }
+
+        public CustomField[] customFields { get; set; }
+
+        public Attachment[] attachments { get; set; }
+
+        public SharedFile[] sharedFiles { get; set; }
+
+        public Star[] stars { get; set; }
     }
 }

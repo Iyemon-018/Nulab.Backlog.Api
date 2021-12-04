@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Star
+    public sealed class Star
     {
         public int id { get; set; }
 

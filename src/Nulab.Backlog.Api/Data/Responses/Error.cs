@@ -6,7 +6,7 @@
     /// <remarks>
     /// https://developer.nulab.com/ja/docs/backlog/error-response/#
     /// </remarks>
-    public class Error
+    public sealed class Error
     {
         public Error()
         {

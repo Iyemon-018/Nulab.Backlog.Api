@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class UserActivity
+    public sealed class UserActivity
     {
         public int id { get; set; }
 

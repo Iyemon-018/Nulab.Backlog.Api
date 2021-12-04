@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Space
+    public sealed class Space
     {
         public string spaceKey { get; set; }
 
