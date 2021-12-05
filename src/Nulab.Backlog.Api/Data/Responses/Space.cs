@@ -20,7 +20,7 @@
 
         public DateTime created { get; set; }
 
-        public DateTime updated { get; set; }
+        public DateTime? updated { get; set; }
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>

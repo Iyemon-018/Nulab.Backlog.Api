@@ -1,8 +1,9 @@
 ﻿namespace Nulab.Backlog.Api.Data.Responses
 {
     using System;
+    using System.Net.Mail;
 
-    public sealed class Issue
+    public class Issue
     {
         public int id { get; set; }
 
@@ -18,10 +19,7 @@
 
         public string description { get; set; }
 
-        /// <summary>
-        /// 完了理由を設定、または取得します。
-        /// </summary>
-        public Resolution[] resolutions { get; set; }
+        public object resolution { get; set; }
 
         public Priority priority { get; set; }
 
@@ -31,17 +29,17 @@
 
         public Category[] category { get; set; }
 
-        public ProjectVersion[] versions { get; set; }
+        public object[] versions { get; set; }
 
-        public Milestone[] milestone { get; set; }
+        public object[] milestone { get; set; }
 
         public DateTime? startDate { get; set; }
 
         public DateTime? dueDate { get; set; }
 
-        public int? estimatedHours { get; set; }
+        public object estimatedHours { get; set; }
 
-        public int? actualHours { get; set; }
+        public object actualHours { get; set; }
 
         public int? parentIssueId { get; set; }
 
@@ -51,7 +49,7 @@
 
         public User updatedUser { get; set; }
 
-        public DateTime updated { get; set; }
+        public DateTime? updated { get; set; }
 
         public CustomField[] customFields { get; set; }
 

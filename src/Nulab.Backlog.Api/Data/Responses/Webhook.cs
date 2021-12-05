@@ -22,6 +22,6 @@
         
         public User updatedUser { get; set; }
         
-        public DateTime updated { get; set; }
+        public DateTime? updated { get; set; }
     }
 }
