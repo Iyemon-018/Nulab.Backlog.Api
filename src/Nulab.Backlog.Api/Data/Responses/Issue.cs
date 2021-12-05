@@ -1,7 +1,6 @@
 ﻿namespace Nulab.Backlog.Api.Data.Responses
 {
     using System;
-    using System.Net.Mail;
 
     public class Issue
     {
@@ -19,7 +18,7 @@
 
         public string description { get; set; }
 
-        public object resolution { get; set; }
+        public Resolution[] resolutions { get; set; }
 
         public Priority priority { get; set; }
 
@@ -29,17 +28,17 @@
 
         public Category[] category { get; set; }
 
-        public object[] versions { get; set; }
+        public ProjectVersion[] versions { get; set; }
 
-        public object[] milestone { get; set; }
+        public Milestone[] milestone { get; set; }
 
         public DateTime? startDate { get; set; }
 
         public DateTime? dueDate { get; set; }
 
-        public object estimatedHours { get; set; }
+        public int? estimatedHours { get; set; }
 
-        public object actualHours { get; set; }
+        public int? actualHours { get; set; }
 
         public int? parentIssueId { get; set; }
 
