@@ -26,12 +26,12 @@
             {
                 var content      = await response.DeserializeContentAsync<T>();
                 var rateLimiting = new RateLimiting(response.Limit, response.Remaining, response.Reset);
-                return new BacklogResponse<T>(response.StatusCode, content, rateLimiting);
+                return new BacklogResponse<T>(response.StatusCode, response.RequestMessage, content, rateLimiting);
             }
             else
             {
                 var errors = await response.DeserializeContentAsync<Errors>();
-                return new BacklogResponse<T>(response.StatusCode, errors);
+                return new BacklogResponse<T>(response.StatusCode, response.RequestMessage, errors);
             }
         }
 
@@ -42,12 +42,12 @@
             {
                 var content = response.AsFile();
                 var rateLimiting = new RateLimiting(response.Limit, response.Remaining, response.Reset);
-                return new BacklogResponse<ContentFile>(response.StatusCode, content, rateLimiting);
+                return new BacklogResponse<ContentFile>(response.StatusCode, response.RequestMessage, content, rateLimiting);
             }
             else
             {
                 var errors = await response.DeserializeContentAsync<Errors>();
-                return new BacklogResponse<ContentFile>(response.StatusCode, errors);
+                return new BacklogResponse<ContentFile>(response.StatusCode, response.RequestMessage, errors);
             }
         }
 

@@ -34,6 +34,8 @@
 
         public DateTime Reset { get; }
 
+        public HttpRequestMessage RequestMessage => _response.RequestMessage;
+
         public async Task<T> DeserializeContentAsync<T>()
         {
             await using var stream       = await _response.Content.ReadAsStreamAsync().ConfigureAwait(false);
