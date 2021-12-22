@@ -36,9 +36,9 @@
 
         public DateTime? dueDate { get; set; }
 
-        public int? estimatedHours { get; set; }
+        public double? estimatedHours { get; set; }
 
-        public int? actualHours { get; set; }
+        public double? actualHours { get; set; }
 
         public int? parentIssueId { get; set; }
 
