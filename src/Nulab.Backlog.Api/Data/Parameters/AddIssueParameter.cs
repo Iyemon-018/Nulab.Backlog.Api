@@ -22,13 +22,13 @@
         
         private DateTime? dueDate;
         
-        private int? estimatedHours;
+        private double? estimatedHours;
         
         private int issueTypeId;
         
         private int priorityId;
         
-        private int? actualHours;
+        private double? actualHours;
         
         private int[] categoryId;
         
@@ -50,8 +50,8 @@
                                , string description = default
                                , DateTime? startDate = default
                                , DateTime? dueDate = default
-                               , int? estimatedHours = default
-                               , int? actualHours = default
+                               , double? estimatedHours = default
+                               , double? actualHours = default
                                , int[] categoryId = default
                                , int[] versionId = default
                                , int[] milestoneId = default
